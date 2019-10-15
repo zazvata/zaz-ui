@@ -1,0 +1,26 @@
+.gadget {
+    &.lab {
+        .container {
+            overflow: hidden;
+        }
+        .gadget-controls {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+        }
+        .gadget-content {
+            flex: 1;
+            border-top: 1px solid #aaa;
+            padding: 0;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            .lab-widget {
+                width: 75%;
+                height: 75%;
+                border: 1px solid #ccc;
+            }
+        }
+    }
+}

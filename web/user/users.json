@@ -1,0 +1,31 @@
+[{
+        "userId": 100,
+        "firstName": "100_Admin",
+        "lastName": "Last",
+        "role": "admin"
+    },
+    {
+        "userId": 101,
+        "firstName": "101_Alex",
+        "lastName": "Last",
+        "role": "user"
+    },
+    {
+        "userId": 102,
+        "firstName": "102_John",
+        "lastName": "Last",
+        "role": "user"
+    },
+    {
+        "userId": 103,
+        "firstName": "103_Cheng",
+        "lastName": "Last",
+        "role": "user"
+    },
+    {
+        "userId": 104,
+        "firstName": "104_Siva",
+        "lastName": "Last",
+        "role": "user"
+    }
+]

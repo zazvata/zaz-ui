@@ -1,0 +1,48 @@
+[{
+  "id": "id",
+  "name": "Application #",
+  "width": 85,
+  "hideable": false,
+  "reordable": false,
+  "fixed": true,
+  "visible": true,
+  "sortable": true
+}, {
+  "id": "createdTime",
+  "name": "Created",
+  "width": 145,
+  "visible": true,
+  "sortable": true,
+  "sort": "asc",
+  "sortOrder": 1
+}, {
+  "id": "created",
+  "name": "Created By",
+  "width": 130,
+  "visible": true,
+  "sortable": true
+}, {
+  "id": "reviewedTime",
+  "name": "Reviewed",
+  "width": 150,
+  "visible": true,
+  "sortable": true
+}, {
+  "id": "reviewed",
+  "name": "Reviewer",
+  "width": 130,
+  "visible": true,
+  "sortable": true
+}, {
+  "id": "approvedTime",
+  "name": "Approved",
+  "width": 150,
+  "visible": true,
+  "sortable": true
+}, {
+  "id": "approved",
+  "name": "Approver",
+  "width": 130,
+  "visible": true,
+  "sortable": true
+}]

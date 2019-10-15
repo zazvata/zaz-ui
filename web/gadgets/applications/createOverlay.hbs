@@ -1,0 +1,29 @@
+{{#if main}}
+    <div class="zaz-overlay create-application" tabindex="-1" aria-label="{{title}}" role="alertdialog">
+        <div class="zaz-overlay-header">
+            <div class="left">
+                <div class="zaz-overlay-header-title" tabindex="0">{{title}}</div>
+            </div>
+            <div class="right">
+                <i class="material-icons md-light zaz-overlay-header-close" tabindex="0" role="button" title="Close">close</i>
+            </div>
+        </div>
+        <div class="zaz-overlay-content" tabindex="0" aria-live="assertive" role="alert">
+            <div>Please select a reviewer and an approver for your application.</div>
+            <div class="sections">
+                <div class="section reviewers"><span>Reviewer:</span><select>REVIEWER</select></div>
+                <div class="section approvers"><span>Approver:</span><select>APPROVER</select></div>
+                </div>
+            </div>  
+        <div class="zaz-overlay-footer">
+            <button class="button cancel" tabindex="0">Cancel</button>
+            <button class="button default ok" tabindex="0">OK</button>
+        </div>
+    </div>
+{{/if}}
+
+{{#if list}}
+    {{#each items}}
+        <option value="{{this.userId}}">{{this.firstName}}, {{this.lastName}}</option>
+    {{/each}}
+{{/if}}

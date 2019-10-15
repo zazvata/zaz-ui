@@ -1,0 +1,73 @@
+{{#if mainbar}}
+<span class="hiddenLabel titleLabel" tabindex="0"></span>
+<div class="__mainbar">
+    <div class="left">
+        <div class="title">Application #{{applicationNumber}}<span class="version"></span></div>
+    </div>
+    <div class="right meta">
+        <div class="info created">Created By: <span class="user">{{creator}}</span></div>
+        <div class="info reviewed">Reviewed: <span class="status{{#if isReviewed}} yes{{/if}}">{{#if isReviewed}}YES{{else}}NO{{/if}}</span></div>
+        <div class="info approved">Approved: <span class="status{{#if isApproved}} yes{{/if}}">{{#if isApproved}}YES{{else}}NO{{/if}}</span></div>
+    </div>
+</div>
+</div>
+{{/if}} 
+
+{{#if toolbar}}
+    {{#if viewerMode}}
+        <div class="standard">
+            <div class="left">
+                <div class="knobs" data-intro='Click here to open or reopen gadgets' data-step="4" data-position="bottom">
+                    <div tabindex="0" class="knob"  data-action="console" data-type="action" role="button" tabindex="0" title="{{items.GO-TO-CONSOLE}}" aria-label="{{items.GO-TO-CONSOLE}}">
+                        <i class="material-icons md-light">home</i>
+                    </div>
+                    <div tabindex="0" class="knob"  data-action="gadgets" data-type="action" role="button" tabindex="0" title="{{items.OPEN-GADGETS-MENU}}" aria-haspopup="true"
+                        aria-expanded="false">
+                        <i class="material-icons md-light">picture_in_picture</i>
+                    </div>
+                </div>
+            </div>
+            <div class="right"></div>
+        </div>
+        <div class="mobile">
+            <div class="left">
+                <div class="knobs" data-intro='Click here to open or reopen gadgets' data-step="4" data-position="bottom">
+                    <div tabindex="0" class="knob"  data-action="console" data-type="action" role="button" tabindex="0" title="{{items.GO-TO-CONSOLE}}" aria-label="{{items.GO-TO-CONSOLE}}">
+                        <i class="material-icons md-light">home</i>
+                    </div>
+                </div>
+            </div>
+            <div class="right">
+                <div class="knobs">
+                    <div tabindex="0" class="knob"  data-action="gadgets" data-type="action" role="button" tabindex="0" title="{{items.OPEN-GADGETS-MENU}}" aria-haspopup="true"
+                        aria-expanded="false">
+                        <i class="material-icons md-light">picture_in_picture</i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {{/if}}
+    {{#unless viewerMode}}
+    <div class="standard">
+            <div class="left">
+                <div class="knobs" data-intro='Click here to open or reopen gadgets' data-step="4" data-position="bottom">
+                    <div tabindex="0" class="knob"  data-action="console" data-type="action" role="button" tabindex="0" title="{{items.GO-TO-CONSOLE}}" aria-label="{{items.GO-TO-CONSOLE}}">
+                        <i class="material-icons md-light">home</i>
+                    </div>
+                </div>
+            </div>
+            <div class="right"></div>
+        </div>
+        <div class="mobile">
+            <div class="left">
+                <div class="knobs" data-intro='Click here to open or reopen gadgets' data-step="4" data-position="bottom">
+                    <div tabindex="0" class="knob"  data-action="console" data-type="action" role="button" tabindex="0" title="{{items.GO-TO-CONSOLE}}" aria-label="{{items.GO-TO-CONSOLE}}">
+                        <i class="material-icons md-light">home</i>
+                    </div>
+                </div>
+            </div>
+            <div class="right">
+            </div>
+        </div>
+    {{/unless}} 
+{{/if}}

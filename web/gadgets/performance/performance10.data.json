@@ -1,0 +1,10 @@
+[{"id":1,"make":"Chevrolet","model":"G-Series G30","color":"#c4fc15","cost":44890},
+    {"id":2,"make":"Kia","model":"Sorento","color":"#007a64","cost":43891},
+    {"id":3,"make":"Aston Martin","model":"DBS","color":"#de1cde","cost":26345},
+    {"id":4,"make":"Audi","model":"A4","color":"#82b301","cost":54672},
+    {"id":5,"make":"Chevrolet","model":"Corvette","color":"#6a56f3","cost":20445},
+    {"id":6,"make":"Ford","model":"Thunderbird","color":"#809fa2","cost":25191},
+    {"id":7,"make":"Bentley","model":"Continental GT","color":"#bae8ff","cost":58532},
+    {"id":8,"make":"Buick","model":"LeSabre","color":"#bbd548","cost":59152},
+    {"id":9,"make":"Ford","model":"Fiesta","color":"#8780a4","cost":32053},
+    {"id":10,"make":"Saturn","model":"Ion","color":"#4ae4c1","cost":58542}]

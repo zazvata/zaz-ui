@@ -1,0 +1,8 @@
+.gadget {
+    &.{gadgetName} {
+        .gadget-controls {
+            display: flex;
+            flex-direction: row;
+        }
+    }
+}

@@ -1,0 +1,119 @@
+.applications {
+    .container {
+        overflow: hidden;
+    }
+    .gadget-controls {
+        .controls-bar {
+            justify-content: space-between;
+            flex-wrap: wrap;
+            &:first-of-type {
+                display: flex;
+                border-bottom: 1px solid #ccc;
+            }
+        }
+        .filters {
+            display: inline-block;
+            padding: 0px 5px 5px 5px;
+            .filter {
+                box-shadow: inset 0 0 20px 0 #ccc;
+                .count {
+                    margin-left: 8px;
+                    padding: 0 4px 0 4px;
+                    border: 1px solid #ccc;
+                    border-radius: 5px;
+                    transition: background-color 1s;
+                    background-color: #fff;
+                    color: #000;
+                }
+            }
+        }
+        .app-actions {
+            display: flex;
+            float: right;
+            .create-app {
+                min-height: 28px;
+                border-radius: 5px;
+                background-color: #306CA8;
+                color: white;
+                border: none;
+                outline: none;
+                .icon {
+                    margin: -1px 2px 0px 0px;
+                }
+            }
+            .delete-apps {
+                min-height: 28px;
+                margin-left: 5px;
+                border-radius: 5px;
+                background-color: #D42221;
+                color: white;
+                border: none;
+                outline: none;
+                .icon {
+                    margin: -1px 2px 0px 0px;
+                }
+            }
+        }
+        .ui-sortable-placeholder {
+            display: inline-block;
+            height: 1px;
+        }
+    }
+    .grid {
+        flex: 1;
+        border-top: 1px solid #ccc;
+        .review-app {
+            margin-left: 15px;
+            border-radius: 4px;
+            background-color: #306CA8;
+            border: none;
+            color: white;
+            padding: 4px;
+            font-size: 80%;
+        }
+        .approve-app {
+            margin-left: 15px;
+            border-radius: 4px;
+            background-color: #237318;
+            border: none;
+            color: white;
+            padding: 4px;
+            font-size: 80%;
+        }
+        tr {
+            transition: background-color 1s;
+            &.new {
+                background-color: #6ACEDC !important;
+            }
+        }
+        .viewlink {
+            cursor: pointer;
+            text-decoration: underline;
+            color: RGB(var(--theme-color));
+        }
+    }
+}
+
+.zaz-overlay {
+    &.create-application {
+        .zaz-overlay-content {
+            padding: 20px;
+            .sections {
+                display: flex;
+                justify-content: center;
+                .section {
+                    display: inline-block;
+                    padding: 20px 10px 10px 10px;
+                    span {
+                        font-weight: bold;
+                    }
+                    select {
+                        display: block;
+                        width: 150px;
+                        margin-top: 5px;
+                    }
+                }
+            }
+        }
+    }
+}

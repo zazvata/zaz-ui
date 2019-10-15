@@ -1,0 +1,52 @@
+<div class="container zaz-effect zaz-effect-bar-top">
+    <div class="gadget-controls">
+        <div class="controls-bar">
+            <div class="knobs">
+                <div class="knob" data-action="design"></div>
+                <div class="knob" data-action="format"></div>
+                <div class="knob" data-action="data"></div>
+            </div>
+            <div class="knobs">
+                <input class="theme" type="range" min="1" max="5" value="1">
+            </div>
+        </div>
+    </div>
+    <div class="gadget-content">
+        <div class="zaz-form-builder">
+            {{> designer }}
+            {{> features }}
+            {{> formdata }}
+        </div>
+    </div>
+</div>
+
+{{#*inline "designer"}}
+<div class="zaz-form-designer"></div>
+{{/inline}}
+
+{{#*inline "features"}}
+<div class="zaz-form-features">
+    <div class="zaz-form-setting" data-type="formtitle" data-value="enabled">Form Title</div>
+    <div class="zaz-form-setting" data-type="grouptitles" data-value="enabled">Group Titles</div>
+    <div class="zaz-form-setting" data-type="stepmode" data-value="disabled">Step Mode</div>
+    <div class="zaz-form-setting" data-type="labels" data-value="inline">Labels</div>
+    <div class="zaz-form-setting" data-type="controls" data-value="fixed">Controls</div>
+
+    <div class="zaz-form-feature zaz-form-section">Section</div>
+    <div class="zaz-form-feature zaz-form-group">Group</div>
+    <div class="zaz-form-feature zaz-form-field" data-type="text">Text</div>
+    <div class="zaz-form-feature zaz-form-field" data-type="email">Email</div>
+    <div class="zaz-form-feature zaz-form-field" data-type="number">Number</div>
+    <div class="zaz-form-feature zaz-form-field" data-type="range">Range</div>
+    <div class="zaz-form-feature zaz-form-field" data-type="checkbox">Checkbox</div>
+    <div class="zaz-form-feature zaz-form-field" data-type="radio">Radio</div>
+    <div class="zaz-form-feature zaz-form-field" data-type="select">Select</div>
+    <div class="zaz-form-feature zaz-form-field" data-type="textarea">Textarea</div>
+</div>
+{{/inline}}
+
+{{#*inline "formdata"}}
+<div class="zaz-form-data">
+    <div class="json"></div>
+</div>
+{{/inline}}

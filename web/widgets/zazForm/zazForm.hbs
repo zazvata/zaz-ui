@@ -1,0 +1,162 @@
+<div class="zaz-form" data-theme="theme-{{form.format.theme}}" data-stepmode="{{form.format.stepmode}}"
+    data-labels="{{form.format.labels}}" data-controls="{{form.format.controls}}"
+    data-grouptitles="{{form.format.grouptitles}}" data-formtitle="{{form.format.formtitle}}">
+    {{> form-header}}
+    {{> form-items}}
+    {{> form-footer}}
+</div>
+
+{{#*inline "form-header"}}
+<div class="zaz-form-header">
+    <div class="zaz-form-header-title">{{form.header.title}}</div>
+</div>
+{{/inline}}
+
+{{#*inline "form-items"}}
+<div class="zaz-form-items">
+    {{#each form.sections as |section|}}
+    {{> form-section section=section}}
+    {{/each}}
+</div>
+{{/inline}}
+
+{{#*inline "form-section"}}
+<div class="zaz-form-section active" data-enabled="{{section.enabled}}">
+    {{#each section.groups as |group|}}
+    {{> form-group group=group}}
+    {{/each}}
+</div>
+{{/inline}}
+
+{{#*inline "form-group"}}
+<div class="zaz-form-group" data-group="{{group.name}}" data-enabled="{{group.enabled}}">
+    <div class="zaz-form-group-title">{{group.title}}</div>
+    {{#each group.fields as |field|}}
+    {{> form-field field=field}}
+    {{/each}}
+</div>
+{{/inline}}
+
+{{#*inline "form-field"}}
+<div class="zaz-form-field" data-enabled="{{field.enabled}}">
+    <div class="zaz-form-label">{{field.label}}</div>
+    <div class="zaz-form-control" data-type="{{field.type}}">
+        {{#switch field.type}}
+        {{#case "text"}}
+        {{> form-text}}
+        {{/case}}
+        {{#case "email"}}
+        {{> form-email}}
+        {{/case}}
+        {{#case "number"}}
+        {{> form-number}}
+        {{/case}}
+        {{#case "range"}}
+        {{> form-range}}
+        {{/case}}
+        {{#case "checkbox"}}
+        {{> form-checkbox}}
+        {{/case}}
+        {{#case "radio"}}
+        {{> form-radio}}
+        {{/case}}
+        {{#case "select"}}
+        {{> form-select}}
+        {{/case}}
+        {{#case "textarea"}}
+        {{> form-textarea}}
+        {{/case}}
+        {{/switch}}
+    </div>
+</div>
+{{/inline}}
+
+{{#*inline "form-text"}}
+<input name="{{field.name}}" type="text" style="width:{{field.width}}px;"
+    class="{{#if field.required}}zaz-required{{/if}}">
+{{/inline}}
+
+{{#*inline "form-email"}}
+<input name="{{field.name}}" type="email" style="width:{{field.width}}px;"
+    class="{{#if field.required}}zaz-required{{/if}}">
+{{/inline}}
+
+{{#*inline "form-number"}}
+<input name="{{field.name}}" type="number" style="width:{{field.width}}px;"
+    class="{{#if field.required}}zaz-required{{/if}}">
+{{/inline}}
+
+{{#*inline "form-range"}}
+<input name="{{field.name}}" type="range" style="width:{{field.width}}px;" min="{{field.min}}" max="{{field.max}}"
+    class="{{#if field.required}}zaz-required{{/if}}">
+{{/inline}}
+
+{{#*inline "form-checkbox"}}
+<div class="zaz-form-checkbox-controls" data-display="{{field.display}}">
+    {{#each field.items as |item|}}
+    <div class="zaz-form-checkbox-control">
+        <label>
+            <input name="{{field.name}}" value="{{item.value}}" type="checkbox">
+            <span class="checkmark"></span>
+        </label>
+        <span class="control-title">{{item.title}}</span>
+    </div>
+    {{/each}}
+</div>
+{{/inline}}
+
+{{#*inline "form-radio"}}
+<div class="zaz-form-radio-controls" data-display="{{field.display}}">
+    {{#each field.items as |item|}}
+    <div class="zaz-form-radio-control">
+        <label>
+            <input name="{{field.name}}" value="{{item.value}}" type="radio">
+            <span class="checkmark"></span>
+        </label>
+        <span class="control-title">{{item.title}}</span>
+    </div>
+    {{/each}}
+</div>
+{{/inline}}
+
+{{#*inline "form-select"}}
+<select name="{{field.name}}" style="width:{{field.width}}px;" class="{{#if field.required}}zaz-required{{/if}}">
+    {{#each field.items as |item|}}
+    <option value="{{item.value}}">{{item.title}}</option>
+    {{/each}}
+</select>
+{{/inline}}
+
+{{#*inline "form-textarea"}}
+<textarea name="{{field.name}}" style="width:{{field.width}}px;"></textarea>
+{{/inline}}
+
+{{#*inline "form-footer"}}
+<div class="zaz-form-footer">
+    <button type="button" class="button zaz-effect zaz-effect-bar-bottom" data-action="prev">
+        Prev
+    </button>
+    <button type="button" class="button zaz-effect zaz-effect-bar-bottom" data-action="next">
+        Next
+    </button>
+    <button type="submit" class="button zaz-effect zaz-effect-bar-bottom default" data-action="submit">
+        Submit
+    </button>
+</div>
+{{/inline}}
+
+{{!-- 
+<input type="color">
+<input type="date">
+<input type="datetime-local">
+<input type="file">
+<input type="hidden">
+<input type="image">
+<input type="month">
+<input type="reset">
+<input type="search">
+<input type="tel">
+<input type="time">
+<input type="url">
+<input type="week">
+--}}

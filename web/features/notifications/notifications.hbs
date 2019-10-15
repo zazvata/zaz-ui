@@ -1,0 +1,18 @@
+{{#if blnPopup}}
+<div class="notification" aria-hidden="true">
+    <div class="header">Notification</div>
+    <div class="content">{{text}}</div>
+</div>
+{{/if}}
+
+{{#if blnList}}
+<div class="zaz-menu notificationsmenu" aria-hidden="true">
+    <div class="items" role="menu">
+        {{#each textItems}}
+            <div class="item" role="menuitem" tabindex="0">{{this}}</div>
+        {{/each}}
+    </div>
+</div>
+{{/if}}
+
+

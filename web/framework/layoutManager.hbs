@@ -1,0 +1,68 @@
+{{#if mainZone}}
+    <div class="zone" data-zone="main">
+        <div class="zone-drop">
+            <div class="icon"></div>
+        </div>
+        <div class="zone-help">{{items.MAIN-ZONE-MESSAGE}}</div>
+    </div>
+{{/if}} 
+
+{{#if subZone}} 
+    <div class="zone-meta"></div>
+    {{#if isVertical}}
+        <div class="zone top" data-meta="top" data-zone="{{parentZone}}-top">
+            <div class="zone-close" title="{{items.CLOSE}}"><i class="material-icons md-light">close</i></div>
+            <div class="zone-drop">
+                <div class="icon"></div>
+            </div>
+            <div class="zone-meta"></div>
+        </div>
+    {{else}}
+        <div class="zone left" data-meta="left" data-zone="{{parentZone}}-left">
+            <div class="zone-close" title="{{items.CLOSE}}"><i class="material-icons md-light">close</i></div>
+            <div class="zone-drop">
+                <div class="icon"></div>
+            </div>
+            <div class="zone-meta"></div>
+        </div>
+    {{/if}}
+    <div class="zone-splitter">
+        {{#if isVertical}}
+            <div class="arrow" data-orientation="top" title="{{items.COLLAPSE-TOP}}"></div>
+            <div class="flip" title="{{items.FLIP-TOP-BOTTOM}}"></div>
+            <div class="orient" title="{{items.FLIP-ORIENTATION}}"></div>
+            <div class="arrow" data-orientation="bottom" title="{{items.COLLAPSE-BOTTOM}}"></div>
+        {{else}}
+            <div class="arrow" data-orientation="left" title="{{items.COLLAPSE-LEFT}}"></div>
+            <div class="flip" title="{{items.FLIP-LEFT-RIGHT}}"></div>
+            <div class="orient" title="{{items.FLIP-ORIENTATION}}"></div>
+            <div class="arrow" data-orientation="right" title="{{items.COLLAPSE-RIGHT}}"></div>
+        {{/if}}
+    </div>
+    {{#if isVertical}}
+        <div class="zone bottom" data-meta="bottom" data-zone="{{parentZone}}-bottom">
+            <div class="zone-close" title="{{items.CLOSE}}"><i class="material-icons md-light">close</i></div>
+            <div class="zone-drop">
+                <div class="icon"></div>
+            </div>
+            <div class="zone-meta"></div>
+        </div>
+    {{else}}
+        <div class="zone right" data-meta="right" data-zone="{{parentZone}}-right">
+            <div class="zone-close" title="{{items.CLOSE}}"><i class="material-icons md-light">close</i></div>
+            <div class="zone-drop">
+                <div class="icon"></div>
+            </div>
+            <div class="zone-meta"></div>
+        </div>
+    {{/if}}
+{{/if}}
+
+{{#if collapsedZone}}
+    <div class="meta-count">{{count}}</div>
+    <div class="meta-gadgets">
+        {{#each gadgets}}
+        <div class="meta-gadget" data-script="{{this.script}}" data-gadgetid="{{this.gadgetid}}" >{{this.title}}</div>
+        {{/each}}
+    </div>
+{{/if}}

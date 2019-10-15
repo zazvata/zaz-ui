@@ -1,0 +1,51 @@
+{{#if main}}
+<div class="container zaz-effect zaz-effect-bar-top">
+    <div class="gadget-controls">
+        <div class="controls-bar" style="flex:1">
+            <div class="message" style="white-space: nowrap;">
+                High Performance Grid (100K rows)
+            </div>
+        </div>
+        <div class="controls-bar">
+            <div class="knobs mode">
+                <div tabindex="0" class="knob active" data-mode="grid" title="View as Grid">
+                    <i class="material-icons md-light">view_stream</i>
+                    <label>Grid</label>
+                </div>
+                <div tabindex="0" class="knob"  data-mode="tile" title="View as Tiles">
+                    <i class="material-icons md-light">view_module</i>
+                    <label>Tile</label>
+                </div>
+            </div>
+        </div>
+        <div class="controls-bar">
+            <div class="knobs rows">
+                <div tabindex="0" class="knob c10 active" data-rows="10" title="10 rows">
+                    <label>10</label>
+                </div>
+                <div tabindex="0" class="knob c100 active" data-rows="100" title="100 rows">
+                    <label>100</label>
+                </div>
+                <div tabindex="0" class="knob c1000" data-rows="1000" title="1000 rows">
+                    <label>1000</label>
+                </div>
+                <div tabindex="0" class="knob c10000" data-rows="10000" title="10000 rows">
+                    <label>10000</label>
+                </div>
+                <div tabindex="0" class="knob c100000" data-rows="100000" title="100000 rows">
+                    <label>100000</label>
+                </div>
+            </div>
+        </div>
+        <div class="controls-bar">
+            <div class="knobs template">
+                <div tabindex="0" class="knob active" data-mode="grid" title="View as Grid">
+                    <i class="material-icons md-light">format_shapes</i>
+                    <label>Template</label>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="grid"></div>
+</div>
+{{/if}}

@@ -1,0 +1,84 @@
+.zaz-splitter {
+    display: flex;
+    .zaz-splitter-splitter {
+        border: 1px solid #ddd;
+        padding: 2px;
+        background-color: #f5f5f5;
+        position: relative;
+        z-index: 1000;
+        .zaz-splitter-splitter-arrow {
+            background: url('../../framework/images/framework.png') no-repeat 0px -64px;
+            left: -5px;
+            z-index: 1001;
+            width: 10px;
+            height: 29px;
+            cursor: pointer;
+            position: absolute;
+        }
+    }
+    &[data-orientation] {
+        .zaz-splitter-pane {
+            flex: 1;
+            position: relative;
+        }
+        &[data-collapsed] {
+            .zaz-splitter-splitter {
+                cursor: not-allowed;
+            }
+        }
+    }
+    &[data-orientation="v"] {
+        flex-direction: column;
+        .zaz-splitter-splitter {
+            cursor: ns-resize;
+            border-left: none;
+            border-right: none;
+            .zaz-splitter-splitter-arrow {
+                top: -13px;
+                left: calc(50% - 5px);
+                transform: rotate(90deg);
+            }
+        }
+        &[data-collapsed] {
+            .zaz-splitter-next {
+                max-height: 50px;
+            }
+            .zaz-splitter-splitter {
+                .zaz-splitter-splitter-arrow {
+                    transform: rotate(-90deg);
+                }
+            }
+        }
+    }
+    &[data-orientation="h"] {
+        flex-direction: row;
+        .zaz-splitter-splitter {
+            cursor: ew-resize;
+            border-top: none;
+            border-bottom: none;
+            .zaz-splitter-splitter-arrow {
+                top: calc(50% - 15px);
+                left: -3px;
+            }
+        }
+        &[data-collapsed] {
+            .zaz-splitter-next {
+                max-width: 50px;
+            }
+            .zaz-splitter-splitter {
+                .zaz-splitter-splitter-arrow {
+                    transform: rotate(180deg);
+                }
+            }
+        }
+    }
+    &[data-drag="disabled"] {
+        .zaz-splitter-splitter {
+            border: none;
+            padding: 0;
+            .zaz-splitter-splitter-arrow {
+                left: -5px;
+            }
+        }
+    }
+}

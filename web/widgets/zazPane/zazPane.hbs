@@ -1,0 +1,11 @@
+{{#each data}}
+<div class="zaz-pane-panel" data-id="{{id}}" aria-expanded="false" aria-label="{{title}}">
+    <div class="zaz-pane-panel-tab" tabindex="0">
+        <div class="zaz-pane-panel-tab-indicator"></div>
+        <div class="zaz-pane-panel-tab-title">{{{title}}}</div>
+    </div>
+    <div class="zaz-pane-panel-content">
+        {{{content}}}
+    </div>
+</div>
+{{/each}}
