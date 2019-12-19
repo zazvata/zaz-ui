@@ -31,55 +31,17 @@ define([
             'PREFERENCE-user-language': {
                 language: 'en'
             },
-            'PREFERENCE-user-font': {
-                family: 'Verdana',
-                size: '10',
-                weight: false,
-                color: '#000000',
-                style: false
-            },
-            'PREFERENCE-user-layout': {
-                splitter: true,
-                flip: true,
-                orient: true,
-                tab: true,
-                toolbar: true
-            },
-            'PREFERENCE-user-toolbar': {
-                toolbar: 'left'
-            },
-            'PREFERENCE-user-tab': {
-                tab: 'default'
-            },
-            'PREFERENCE-user-mode': {
-                mode: 'town'
-            },
+            'PREFERENCE-user-font': {},
+            'PREFERENCE-user-layout': {},
+            'PREFERENCE-user-mode': {},
+            'PREFERENCE-user-toolbar': {},
+            'PREFERENCE-user-tab': {},
             'PREFERENCE-user-theme': {
-                theme: 'default',
-                themeColor: '#004488',
-                layout: {
-                    splitter: 1,
-                    flip: 1,
-                    orient: 1,
-                    tab: 1,
-                    toolbar: 1
-                },
-                toolbar: 'left',
-                tab: 'default',
-                mode: 'town',
-                font: {
-                    family: 'Verdana',
-                    size: '10',
-                    weight: false,
-                    style: false,
-                    color: '#000000'
-                }
+                theme: 'default'
             }
         },
 
         settings: {},
-
-        lastState: {},
 
         Changed: false,
 
@@ -100,16 +62,12 @@ define([
                 'button-click': this.handleButtonClick.bind(this)
             });
             this.bindListeners();
-
             this.$overlay.find('.items .item:first').click();
         },
 
         handleButtonClick: function (e, data) {
             var strAction = data.action;
             switch (strAction) {
-                case 'defaults':
-                    this.resetToDefaults();
-                    break;
                 case 'reset':
                     this.reset();
                     break;
@@ -238,7 +196,7 @@ define([
             $overlay.off('change', '.theme');
             $overlay.on('change', '.theme', function () {
                 var strColor = $(this).find('option:selected').attr('data-themecolor');
-                $overlay.find('.themeColor').val(strColor).trigger('change');
+                $overlay.find('.themeColor').val(strColor);
             });
 
             $overlay.off('change', '[data-key]');
@@ -348,7 +306,9 @@ define([
             var context = this,
                 $body = $('body');
 
-            context.loadPreferences();
+            if ($.isEmptyObject(context.settings)) {
+                context.loadPreferences();
+            }
 
             if (window.preferences['PREFERENCE-user-font']) {
                 $body.css({
@@ -405,6 +365,19 @@ define([
             if (window.preferences['PREFERENCE-user-name']) {
                 context.displayUserName();
             }
+        },
+
+        getTheme: function (strTheme) {
+            var arrThemes = userSettings.themes;
+            var theme = null;
+            $.each(userSettings.themes, function (i, row) {
+                if (row.value === strTheme) {
+                    theme = row;
+                    return false;
+                }
+                return true;
+            });
+            return theme;
         },
 
         nextTheme: function () {
@@ -542,27 +515,36 @@ define([
             });
         },
 
+        loadDefaults: function () {
+            var defaultTheme = this.getTheme('default');
+
+            this.defaults['PREFERENCE-user-font'] = defaultTheme.font;
+            this.defaults['PREFERENCE-user-layout'] = defaultTheme.layout;
+            this.defaults['PREFERENCE-user-mode'] = {
+                mode: defaultTheme.mode
+            }
+            this.defaults['PREFERENCE-user-toolbar'] = {
+                toolbar: defaultTheme.toolbar
+            }
+            this.defaults['PREFERENCE-user-tab'] = {
+                tab: defaultTheme.tab
+            }
+            this.defaults['PREFERENCE-user-theme'] = {
+                theme: 'default',
+                themeColor: '#001327',
+                layout: defaultTheme.layout,
+                toolbar: defaultTheme.toolbar,
+                tab: defaultTheme.tab,
+                mode: defaultTheme.mode,
+                font: defaultTheme.font
+            }
+        },
+
         loadPreferences: function () {
             this.settings = $.extend({}, this.defaults, framework.windowManager.getWindow().preferences);
-            this.lastState = $.extend({}, this.settings);
         },
 
         reset: function () {
-            var row;
-
-            this.settings = $.extend({}, this.lastState);
-            for (row in this.settings) {
-                if (this.settings.hasOwnProperty(row)) {
-                    this.settings[row].dirty = true;
-                }
-            }
-            this.setValues();
-            if (this.$overlay.find('.instantApply').is(':checked')) {
-                this.save();
-            }
-        },
-
-        resetToDefaults: function () {
             var row;
 
             this.settings = $.extend({}, this.defaults);
@@ -605,6 +587,8 @@ define([
 
         init: function () {
             var context = this;
+            this.loadDefaults();
+
             $(window).on(settings.globals.NAMESPACE + '-message', function (e) {
                 var message = e.message,
                     action = message && message.action,

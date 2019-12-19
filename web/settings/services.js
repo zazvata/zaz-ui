@@ -6,7 +6,7 @@ define([
         users: {
             get: {
                 data: {
-                    url: (window.CONFIG.mock) ? 'user/users.data.json': globals.REST + '/users'
+                    url: (window.CONFIG.mock) ? 'user/users.data.json': globals.REST + '/users?project=zaz-ui'
                 },
                 me: {
                     url: (window.CONFIG.mock) ? 'user/#userId#.data.json': globals.REST + '/users/#userId#'
