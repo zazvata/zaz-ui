@@ -69,13 +69,14 @@ define([
         gadgets.sort(function (a, b) {
             return a.sequence - b.sequence;
         });
-        framework.gadgetManager.open(gadgets);
 
         //this is set so that setPreferences is not called perpetually when loading page
         window.setTimeout(function () {
             window.pageLoaded = true;
             window.pageUnloading = false;
         }, 2000);
+
+        framework.gadgetManager.open(gadgets);
     };
 
     index.setPreferences = function () {

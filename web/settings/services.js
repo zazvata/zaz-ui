@@ -79,7 +79,7 @@ define([
                     url: 'gadgets/performance/performance.config.json'
                 },
                 data: {
-                    url: (window.CONFIG.mock) ? 'gadgets/performance/performance#count#.data.json': globals.REST + '/performance/#count#',
+                    url: (window.CONFIG.mock) ? 'gadgets/performance/performance#count#.data.json': globals.REST + '/cars/#count#',
                     cache: {
                         age: 28800,
                         control: 'public'

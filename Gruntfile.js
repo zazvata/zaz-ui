@@ -90,7 +90,7 @@ module.exports = function (grunt) {
                 }
             },
             proxies: app.endPoints.map(function (proxy) {
-                var option = grunt.option('proxy') || 'dev';
+                var option = grunt.option('proxy') || 'localhost';
                 var config = proxyConfig[option];
                 var split = option.split(':');
                 var output = {};

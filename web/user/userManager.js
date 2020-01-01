@@ -70,9 +70,7 @@ define([
                 key: ''
             }).always(function (response) {
                 var data = (response.length) ? response : [],
-                    preferences = {},
-                    themeColor,
-                    $body = $('body');
+                    preferences = {};
 
                 if (data) {
                     $(data).each(function (i, row) {

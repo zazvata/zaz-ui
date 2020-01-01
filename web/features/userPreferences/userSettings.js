@@ -56,45 +56,10 @@ define([
             }
         },
 
-        systemFonts: [{
-                label: 'Aharoni',
-                value: 'Aharoni'
-            },
-            {
-                label: 'Andalus Regular',
-                value: 'Andalus Regular'
-            },
-            {
-                label: 'Angsana New',
-                value: 'Angsana New'
-            },
-            {
-                label: 'AngsanaUPC',
-                value: 'AngsanaUPC'
-            },
-            {
-                label: 'Aparajita',
-                value: 'Aparajita'
-            },
+        systemFonts: [
             {
                 label: 'Arial',
                 value: 'Arial'
-            },
-            {
-                label: 'Batang',
-                value: 'Batang'
-            },
-            {
-                label: 'BatangChe',
-                value: 'BatangChe'
-            },
-            {
-                label: 'Browallia New',
-                value: 'Browallia New'
-            },
-            {
-                label: 'BrowalliaUPC',
-                value: 'BrowalliaUPC'
             },
             {
                 label: 'Calibri',
@@ -105,14 +70,6 @@ define([
                 value: 'Cambria'
             },
             {
-                label: 'Cambria Math',
-                value: 'Cambria Math'
-            },
-            {
-                label: 'Candara',
-                value: 'Candara'
-            },
-            {
                 label: 'Comic Sans MS',
                 value: 'Comic Sans MS'
             },
@@ -121,180 +78,12 @@ define([
                 value: 'Consolas'
             },
             {
-                label: 'Constantia',
-                value: 'Constantia'
-            },
-            {
-                label: 'Corbel',
-                value: 'Corbel'
-            },
-            {
-                label: 'Cordia New',
-                value: 'Cordia New'
-            },
-            {
-                label: 'CordiaUPC',
-                value: 'CordiaUPC'
-            },
-            {
                 label: 'Courier New',
                 value: 'Courier New'
             },
             {
-                label: 'DaunPenh',
-                value: 'DaunPenh'
-            },
-            {
-                label: 'David ',
-                value: 'David '
-            },
-            {
-                label: 'DFKai-SB',
-                value: 'DFKai-SB'
-            },
-            {
-                label: 'DilleniaUPC',
-                value: 'DilleniaUPC'
-            },
-            {
-                label: 'DokChampa',
-                value: 'DokChampa'
-            },
-            {
-                label: 'Dotum',
-                value: 'Dotum'
-            },
-            {
-                label: 'DotumChe',
-                value: 'DotumChe'
-            },
-            {
-                label: 'Ebrima',
-                value: 'Ebrima'
-            },
-            {
-                label: 'Estrangelo Edessa',
-                value: 'Estrangelo Edessa'
-            },
-            {
-                label: 'EucrosiaUPC',
-                value: 'EucrosiaUPC'
-            },
-            {
-                label: 'Euphemia',
-                value: 'Euphemia'
-            },
-            {
-                label: 'FangSong',
-                value: 'FangSong'
-            },
-            {
-                label: 'Franklin Gothic Medium',
-                value: 'Franklin Gothic Medium'
-            },
-            {
-                label: 'Franklin Gothic Medium Italic',
-                value: 'Franklin Gothic Medium Italic'
-            },
-            {
-                label: 'FrankRuehl',
-                value: 'FrankRuehl'
-            },
-            {
-                label: 'FreesiaUPC',
-                value: 'FreesiaUPC'
-            },
-            {
-                label: 'Gabriola',
-                value: 'Gabriola'
-            },
-            {
-                label: 'Gautami',
-                value: 'Gautami'
-            },
-            {
                 label: 'Georgia',
                 value: 'Georgia'
-            },
-            {
-                label: 'Gisha',
-                value: 'Gisha'
-            },
-            {
-                label: 'Gulim',
-                value: 'Gulim'
-            },
-            {
-                label: 'GulimChe',
-                value: 'GulimChe'
-            },
-            {
-                label: 'Gungsuh',
-                value: 'Gungsuh'
-            },
-            {
-                label: 'GungsuhChe',
-                value: 'GungsuhChe'
-            },
-            {
-                label: 'Impact',
-                value: 'Impact'
-            },
-            {
-                label: 'IrisUPC',
-                value: 'IrisUPC'
-            },
-            {
-                label: 'Iskoola Pota',
-                value: 'Iskoola Pota'
-            },
-            {
-                label: 'JasmineUPC',
-                value: 'JasmineUPC'
-            },
-            {
-                label: 'KaiTi',
-                value: 'KaiTi'
-            },
-            {
-                label: 'Kalinga',
-                value: 'Kalinga'
-            },
-            {
-                label: 'Kartika',
-                value: 'Kartika'
-            },
-            {
-                label: 'Khmer UI',
-                value: 'Khmer UI'
-            },
-            {
-                label: 'KodchiangUPC',
-                value: 'KodchiangUPC'
-            },
-            {
-                label: 'Kokila',
-                value: 'Kokila'
-            },
-            {
-                label: 'Lao UI',
-                value: 'Lao UI'
-            },
-            {
-                label: 'Latha',
-                value: 'Latha'
-            },
-            {
-                label: 'Leelawadee',
-                value: 'Leelawadee'
-            },
-            {
-                label: 'Levenim MT',
-                value: 'Levenim MT'
-            },
-            {
-                label: 'LilyUPC',
-                value: 'LilyUPC'
             },
             {
                 label: 'Lucida Console',
@@ -305,204 +94,16 @@ define([
                 value: 'Lucida Sans Unicode'
             },
             {
-                label: 'Malgun Gothic',
-                value: 'Malgun Gothic'
-            },
-            {
-                label: 'Mangal',
-                value: 'Mangal'
-            },
-            {
-                label: 'Meiryo',
-                value: 'Meiryo'
-            },
-            {
-                label: 'Meiryo UI',
-                value: 'Meiryo UI'
-            },
-            {
-                label: 'Microsoft Himalaya',
-                value: 'Microsoft Himalaya'
-            },
-            {
-                label: 'Microsoft JhengHei',
-                value: 'Microsoft JhengHei'
-            },
-            {
-                label: 'Microsoft New Tai Lue',
-                value: 'Microsoft New Tai Lue'
-            },
-            {
-                label: 'Microsoft PhagsPa',
-                value: 'Microsoft PhagsPa'
-            },
-            {
                 label: 'Microsoft Sans Serif',
                 value: 'Microsoft Sans Serif'
-            },
-            {
-                label: 'Microsoft Tai Le',
-                value: 'Microsoft Tai Le'
-            },
-            {
-                label: 'Microsoft Uighur',
-                value: 'Microsoft Uighur'
-            },
-            {
-                label: 'Microsoft YaHei',
-                value: 'Microsoft YaHei'
-            },
-            {
-                label: 'Microsoft Yi Baiti',
-                value: 'Microsoft Yi Baiti'
-            },
-            {
-                label: 'MingLiU',
-                value: 'MingLiU'
-            },
-            {
-                label: 'MingLiU_HKSCS',
-                value: 'MingLiU_HKSCS'
-            },
-            {
-                label: 'MingLiU_HKSCS-ExtB',
-                value: 'MingLiU_HKSCS-ExtB'
-            },
-            {
-                label: 'MingLiU-ExtB',
-                value: 'MingLiU-ExtB'
-            },
-            {
-                label: 'Miriam',
-                value: 'Miriam'
-            },
-            {
-                label: 'Miriam Fixed',
-                value: 'Miriam Fixed'
-            },
-            {
-                label: 'Mongolian Baiti',
-                value: 'Mongolian Baiti'
-            },
-            {
-                label: 'MoolBoran',
-                value: 'MoolBoran'
             },
             {
                 label: 'MS Gothic',
                 value: 'MS Gothic'
             },
             {
-                label: 'MS Mincho',
-                value: 'MS Mincho'
-            },
-            {
-                label: 'MS PGothic',
-                value: 'MS PGothic'
-            },
-            {
-                label: 'MS PMincho',
-                value: 'MS PMincho'
-            },
-            {
-                label: 'MS UI Gothic',
-                value: 'MS UI Gothic'
-            },
-            {
-                label: 'MV Boli',
-                value: 'MV Boli'
-            },
-            {
-                label: 'Narkisim',
-                value: 'Narkisim'
-            },
-            {
-                label: 'NSimSun',
-                value: 'NSimSun'
-            },
-            {
-                label: 'Nyala',
-                value: 'Nyala'
-            },
-            {
-                label: 'Palatino Linotype',
-                value: 'Palatino Linotype'
-            },
-            {
-                label: 'Plantagenet Cherokee',
-                value: 'Plantagenet Cherokee'
-            },
-            {
-                label: 'PMingLiU',
-                value: 'PMingLiU'
-            },
-            {
-                label: 'PMingLiU-ExtB',
-                value: 'PMingLiU-ExtB'
-            },
-            {
-                label: 'Raavi',
-                value: 'Raavi'
-            },
-            {
-                label: 'Rod',
-                value: 'Rod'
-            },
-            {
-                label: 'Sakkal Majalla',
-                value: 'Sakkal Majalla'
-            },
-            {
-                label: 'Segoe Print',
-                value: 'Segoe Print'
-            },
-            {
-                label: 'Segoe Script',
-                value: 'Segoe Script'
-            },
-            {
                 label: 'Segoe UI',
                 value: 'Segoe UI'
-            },
-            {
-                label: 'Segoe UI Italic',
-                value: 'Segoe UI Italic'
-            },
-            {
-                label: 'Segoe UI Light',
-                value: 'Segoe UI Light'
-            },
-            {
-                label: 'Segoe UI Symbol',
-                value: 'Segoe UI Symbol'
-            },
-            {
-                label: 'Shonar Bangla',
-                value: 'Shonar Bangla'
-            },
-            {
-                label: 'Shruti ',
-                value: 'Shruti '
-            },
-            {
-                label: 'SimHei',
-                value: 'SimHei'
-            },
-            {
-                label: 'Simplified Arabic',
-                value: 'Simplified Arabic'
-            },
-            {
-                label: 'SimSun',
-                value: 'SimSun'
-            },
-            {
-                label: 'SimSun-ExtB',
-                value: 'SimSun-ExtB'
-            },
-            {
-                label: 'Sylfaen',
-                value: 'Sylfaen'
             },
             {
                 label: 'Symbol',
@@ -517,44 +118,12 @@ define([
                 value: 'Times New Roman'
             },
             {
-                label: 'Traditional Arabic',
-                value: 'Traditional Arabic'
-            },
-            {
                 label: 'Trebuchet MS',
                 value: 'Trebuchet MS'
             },
             {
-                label: 'Tunga',
-                value: 'Tunga'
-            },
-            {
-                label: 'Utsaah',
-                value: 'Utsaah'
-            },
-            {
-                label: 'Vani',
-                value: 'Vani'
-            },
-            {
                 label: 'Verdana',
                 value: 'Verdana'
-            },
-            {
-                label: 'Vijaya',
-                value: 'Vijaya'
-            },
-            {
-                label: 'Vrinda',
-                value: 'Vrinda'
-            },
-            {
-                label: 'Webdings',
-                value: 'Webdings'
-            },
-            {
-                label: 'Wingdings',
-                value: 'Wingdings'
             }
         ],
 
