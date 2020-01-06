@@ -3,6 +3,7 @@ define([
     'handlebars-helpers',
     'framework/framework',
     'common/formatter',
+    'gadgets/applications/applicationManager',
     'widgets/zazGrid/zazGrid',
     'widgets/zazOverlay/zazOverlay',
     'css!gadgets/applications/applications'
@@ -10,175 +11,98 @@ define([
     HBS,
     framework,
     formatter,
-    zazGrid,
-    zazOverlay) {
-
-
+    applicationManager
+) {
     return $.widget('zaz.applications', framework.baseGadget, {
         pageSize: 25,
-        defaultConfig: [],
         config: [],
+        filter: 'all',
         data: {
             all: [],
             active: [],
-            posted: [],
-            completed: [],
             review: [],
-            approve: []
+            approved: []
         },
-        filter: 'all',
 
         _create: function () {
+            var context = this;
             this._super();
-            this._renderLayout();
-            this._loadData();
-            this._bindListeners();
+
+            this._getConfig().done(function () {
+                context._applyPreferences();
+                context._renderLayout();
+                context._modifyColumns();
+                context._getData();
+                context._bindListeners();
+            });
         },
 
         _bindListeners: function () {
             var context = this;
 
-            this.element.off('click', '.delete-apps');
-            this.element.on('click', '.delete-apps', function () {
-                framework.serviceManager.exec({
-                    service: 'applications.delete',
-                    params: {
-                        userId: window.USERID
-                    },
-                    success: function () {
-                        context._getData();
-                    },
-                    type: 'DELETE'
-                });
-            });
-
-            this.element.off('click', '.create-app');
-            this.element.on('click', '.create-app', function () {
-                var $overlay = $('.zaz-overlay.create-application').length ?
-                    $('.zaz-overlay.create-application') :
-                    $(HBS['gadgets/applications/createOverlay']({
-                        title: 'Create Application',
-                        main: true
-                    })).appendTo(document.body);
-
-                framework.serviceManager.exec({
-                    service: 'users.get.data',
-                    success: function (response) {
-                        var reviewers = response.filter(function (user) {
-                                return window.USERID !== user.userId.toString() && user.role === 'user';
-                            }),
-                            approvers = response.filter(function (user) {
-                                return window.USERID !== user.userId.toString() && user.role === 'admin';
+            this.element.off('click keyup', '.knobs .knob');
+            this.element.on('click keyup', '.knobs .knob', function (e) {
+                var strAction;
+                if (e.type === 'click' || e.keyCode === framework.KEYS.ENTER || e.keyCode === framework.KEYS.SPACE) {
+                    strAction = $(this).attr('data-action');
+                    switch (strAction) {
+                        case 'new-app':
+                            applicationManager.show().then(function () {
+                                context._getData();
                             });
-
-                        $overlay.find('.reviewers select').html(HBS['gadgets/applications/createOverlay']({
-                            list: true,
-                            items: reviewers
-                        }));
-                        $overlay.find('.approvers select').html(HBS['gadgets/applications/createOverlay']({
-                            list: true,
-                            items: approvers
-                        }));
-                        $overlay.off('click', '.cancel');
-                        $overlay.on('click', '.cancel', function () {
-                            $overlay.zazOverlay('close');
-                        });
-                        $overlay.off('click', '.ok');
-                        $overlay.on('click', '.ok', function () {
-                            framework.serviceManager.exec({
-                                service: 'applications.post.create',
-                                type: 'POST',
-                                params: {
-                                    userId: framework.cookieManager.read('userId'),
-                                    reviewer: $overlay.find('.reviewers select').val(),
-                                    approver: $overlay.find('.approvers select').val()
-                                },
-                                success: function () {
-                                    $overlay.zazOverlay('close');
-                                }
+                            break;
+                        case 'delete-apps':
+                            applicationManager.deleteAll().done(function () {
+                                context._getData();
                             });
-                        });
-                        $overlay.zazOverlay({
-                            title: 'Create Application'
-                        });
-                    },
-                    error: function () {}
-                });
+                            break;
+                        default:
+                            break;
+                    }
+                }
             });
 
-            this.element.off('click', '.review-app');
-            this.element.on('click', '.review-app', function () {
-                var appnum = $(this).closest('tr').attr('data-id');
-
-                framework.serviceManager.exec({
-                    service: 'applications.post.review',
-                    params: {
-                        appnum: appnum,
-                        userId: framework.cookieManager.read('userId')
-                    },
-                    success: function () {
-                        context._getData();
-                    },
-                    type: 'POST'
-                });
-            });
-
-            this.element.off('click', '.approve-app');
-            this.element.on('click', '.approve-app', function () {
-                var appnum = $(this).closest('tr').attr('data-id');
-
-                framework.serviceManager.exec({
-                    service: 'applications.post.approve',
-                    params: {
-                        appnum: appnum,
-                        userId: framework.cookieManager.read('userId')
-                    },
-                    success: function () {
-                        context._getData();
-                    },
-                    type: 'POST'
-                });
-            });
-
-            this.element.off('click', '.filter');
-            this.element.on('click', '.filter', function () {
-                var $filters = context.element.find('.filters .filter'),
-                    strFilter = $(this).attr('data-filter'),
-                    $grid = context.element.find('.grid');
+            this.element.off('click keyup', '.filter');
+            this.element.on('click keyup', '.filter', function (e) {
+                var $filters,
+                    strFilter,
+                    $grid;
 
                 if ($(this).hasClass('active')) {
                     return true;
                 }
 
-                $filters.removeClass('active');
-                $(this).addClass('active');
-                context.filter = strFilter;
+                if (e.type === 'click' || e.keyCode === framework.KEYS.ENTER || e.keyCode === framework.KEYS.SPACE) {
+                    $filters = context.element.find('.filters .filter'),
+                        strFilter = $(this).attr('data-filter'),
+                        $grid = context.element.find('.grid');
 
-                if ($grid.zazGrid('instance')) {
-                    $grid.zazGrid('setData', context.data[strFilter]);
+                    $filters.removeClass('active');
+                    $(this).addClass('active');
+                    context.filter = strFilter;
+                    context._setFilter(strFilter);
+
+                    if ($grid.zazGrid('instance')) {
+                        $grid.zazGrid('setData', context.data[strFilter]);
+                    }
                 }
             });
 
-            this.element.off('click', '.viewlink');
-            this.element.on('click', '.viewlink', function (e) {
-                var strViewerId = $(this).attr('data-viewerid'),
+            this.element.off('click keyup', '.viewlink');
+            this.element.on('click keyup', '.viewlink', function (e) {
+                var strViewerId,
                     options;
 
-                options = {
-                    viewer: 'viewer',
-                    params: {
-                        viewerid: strViewerId
-                    },
-                    tab: (e.ctrlKey || e.keyCode === framework.KEYS.SPACE)
-                };
-                framework.windowManager.openViewer(options);
-            });
-
-            this.element.off('keyup', '.viewlink');
-            this.element.on('keyup', '.viewlink', function (e) {
-                if ((e.keyCode === framework.KEYS.SPACE || e.keyCode === framework.KEYS.zaz) &&
-                    !e.shiftKey) {
-                    $(this).trigger('click');
+                if (e.type === 'click' || e.keyCode === framework.KEYS.ENTER || e.keyCode === framework.KEYS.SPACE) {
+                    strViewerId = $(this).attr('data-viewerid');
+                    options = {
+                        viewer: 'viewer',
+                        params: {
+                            viewerid: strViewerId
+                        },
+                        tab: (e.ctrlKey || e.keyCode === framework.KEYS.SPACE)
+                    };
+                    framework.windowManager.openViewer(options);
                 }
             });
         },
@@ -211,71 +135,78 @@ define([
         _renderLayout: function () {
 
             var strHtml = HBS['gadgets/applications/applications']({
-                items: framework.languageManager.translations()
+                items: framework.languageManager.translations(),
+                filter: this.filter
             });
             this.element.append(strHtml);
             this.$controls = this.element.find('.controls');
             this.$grid = this.element.find('.grid');
         },
 
-        _loadData: function () {
-            var context = this;
-
-            this.showLoader();
-            this._getConfig().done(function () {
-                context._applyPreferences();
-                context._modifyColumns();
-                context._getData(true);
-            });
-        },
-
         _getConfig: function () {
             var context = this;
 
-            function errorConfigResponse(response, textStatus) {
+            this.showLoader();
+
+            function error(response, textStatus) {
                 context.$grid.html('<div class="message error">' + textStatus + '</div>');
             }
 
-            function getConfigResponse(response) {
+            function success(response) {
                 context.defaultConfig = response;
             }
 
             return framework.serviceManager.exec({
                 service: 'applications.get.config',
-                success: getConfigResponse,
-                error: errorConfigResponse
+                success: success,
+                error: error
             }).always(function () {
                 context.hideLoader();
             });
         },
 
-        _getData: function (blnInitialLoad) {
+        _getData: function () {
             var context = this;
 
-            function errorDataResponse(response, textStatus) {
+            function error(response, textStatus) {
                 context.$grid.html('<div class="message error">' + textStatus + '</div>');
             }
 
-            function getDataResponse(response) {
-                context._filterData(response);
-                $.each(context.data.all, function (i, row) {
-                    row.createdTime = row.created.time;
-                    row.reviewedTime = row.reviewed.time;
-                    row.approvedTime = row.approved.time;
-                    row.createdByKey = row.created.firstName + ' ' + row.created.lastName;
-                    row.reviewedByKey = row.reviewed.firstName + ' ' + row.reviewed.lastName;
-                    row.approvedByKey = row.approved.firstName + ' ' + row.approved.lastName;
-                });
+            function success(response) {
+                context.data.all = response;
+                context._populateAndFiterData();
                 context._renderData();
-                context._updateCounts(blnInitialLoad);
+                context._updateCounts();
             }
 
             return framework.serviceManager.exec({
                 service: 'applications.get.data',
-                success: getDataResponse,
-                error: errorDataResponse
+                params: {
+                    userId: window.USERID
+                },
+                success: success,
+                error: error
             }).always(function () {
                 context.hideLoader();
+            });
+        },
+
+        _populateAndFiterData: function () {
+            var context = this;
+            $.each(this.data.all, function (i, row) {
+                row.createdBy = (row.creator) ? row.creator.lastName + ', ' + row.creator.firstName : 'N/A';
+                row.reviewedBy = (row.reviewer) ? row.reviewer.lastName + ', ' + row.reviewer.firstName : 'N/A';
+                row.approvedBy = (row.approver) ? row.approver.lastName + ', ' + row.approver.firstName : 'N/A';
+
+                if (row.approver.userId === window.USERID) {
+                    context.data.approved.push(row);
+                }
+                if (row.reviewer.userId === window.USERID) {
+                    context.data.review.push(row);
+                }
+                if (row.creator.userId === window.USERID) {
+                    context.data.active.push(row);
+                }
             });
         },
 
@@ -284,12 +215,12 @@ define([
                 $newItem;
 
             if (this._grid) {
-                context.$grid.zazGrid('setData', this.data[this.filter]);
+                this.$grid.zazGrid('setData', this.data[this.filter]);
                 return true;
             }
 
             context.$grid.zazGrid({
-                data: this.data[context.filter],
+                data: this.data[this.filter],
                 columns: this.config,
                 defaultColumns: this.defaultConfig,
                 columnPicker: true,
@@ -322,27 +253,6 @@ define([
             this._grid = context.$grid.zazGrid('instance');
         },
 
-        _filterData: function (data) {
-            var context = this;
-            data = data.filter(function (app) {
-                return [app.created.userId.toString(), app.reviewed.userId.toString(), app.approved.userId.toString()].indexOf(window.USERID) > -1;
-            });
-
-            context.data.all = data;
-            context.data.active = [];
-            context.data.posted = [];
-            context.data.completed = [];
-            context.data.review = [];
-            context.data.approve = [];
-
-            $.each(data, function (i, dataSet) {
-                var types = context._getAppType(dataSet);
-                $.each(types, function (i, type) {
-                    context.data[type].push(dataSet);
-                });
-            });
-        },
-
         _updateCounts: function (blnInitialLoad) {
             var context = this,
                 count, $count;
@@ -366,42 +276,26 @@ define([
                             return '<div class="viewlink" tabindex="0" data-viewerid="' + data[column.id] + '">' + data[column.id] + '</div>';
                         };
                         break;
-                    case 'createdTime':
-                    case 'reviewedTime':
+                    case 'create_date':
+                    case 'review_date':
+                    case 'approve_date':
                         column.formatter = function (data) {
-                            if (data.reviewed.userId.toString() === window.USERID.toString()) {
-                                return data[column.id] ? new Date(data[column.id]).toLocaleString() : 'N/A<button class="review-app">Mark as reviewed</button>';
+                            if (data[column.id]) {
+                                return formatter.dateFormat.format(data[column.id], 'DD/MM/YYYY');
                             } else {
-                                return data[column.id] ? new Date(data[column.id]).toLocaleString() : 'N/A';
+                                return 'N/A';
                             }
                         };
                         break;
-                    case 'approvedTime':
+                    case 'action':
                         column.formatter = function (data) {
-                            var showApproveButton = data.approved.userId.toString() === window.USERID.toString() && data.reviewed.time;
-                            if (showApproveButton) {
-                                return data[column.id] ? new Date(data[column.id]).toLocaleString() : 'N/A<button class="approve-app">Mark as approved</button>';
-                            } else {
-                                return data[column.id] ? new Date(data[column.id]).toLocaleString() : 'N/A';
+                            //return data[column.id];
+                            if (data.reviewer.userId === window.USERID) {
+                                return '<button class="mark-reviewed">Review</button>';
                             }
-                        };
-                        break;
-                    case 'created':
-                        column.key = 'createdByKey';
-                        column.formatter = function (data) {
-                            return data[column.id].firstName + ' ' + data[column.id].lastName;
-                        };
-                        break;
-                    case 'reviewed':
-                        column.key = 'reviewedByKey';
-                        column.formatter = function (data) {
-                            return data[column.id].firstName + ' ' + data[column.id].lastName;
-                        };
-                        break;
-                    case 'approved':
-                        column.key = 'approvedByKey';
-                        column.formatter = function (data) {
-                            return data[column.id].firstName + ' ' + data[column.id].lastName;
+                            if (data.approver.userId === window.USERID) {
+                                return '<button class="mark-approved">Approve</button>';
+                            }
                         };
                         break;
                     default:
@@ -419,36 +313,9 @@ define([
             });
         },
 
-        _getAppType: function (app) {
-            var createdId = app.created.userId.toString(),
-                reviewedId = app.reviewed.userId.toString(),
-                approvedId = app.approved.userId.toString(),
-                status = app.approved.time ? 'completed' : (app.reviewed.time ? 'posted' : 'active'),
-                result = [];
-
-            result.push(status);
-
-            if (status === 'active' && createdId !== window.USERID) {
-                result.pop();
-            }
-
-            if (reviewedId === window.USERID && !app.reviewed.time) {
-                result.push('review');
-            }
-
-            if (approvedId === window.USERID && !app.approved.time) {
-                result.push('approve');
-            }
-
-            return result;
-        },
-
-        _parseDate: function (strDate) {
-            var d, t;
-            strDate = strDate.split(' ');
-            d = strDate[0].split('-');
-            t = strDate[1].split(':');
-            return new Date(d[0], (d[1] - 1), d[2], t[0], t[1], t[2]);
+        _setFilter: function (strFilter) {
+            this.preferences.filter = strFilter;
+            this.setPreferences();
         },
 
         _setConfig: function (data) {
@@ -462,11 +329,9 @@ define([
         },
 
         _applyPreferences: function () {
-            var intPageSize = this.preferences.pageSize || this.pageSize;
-            var config = this.preferences.config || this.defaultConfig;
-
-            this.pageSize = intPageSize;
-            this.config = config;
+            this.pageSize = this.preferences.pageSize || this.pageSize;
+            this.config = this.preferences.config || this.defaultConfig;
+            this.filter = this.preferences.filter || this.filter;
         }
     });
 });

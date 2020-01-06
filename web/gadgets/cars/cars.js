@@ -4,13 +4,13 @@ define([
     'framework/framework',
     'common/formatter',
     'widgets/zazGrid/zazGrid',
-    'css!gadgets/performance/performance'
+    'css!gadgets/cars/cars'
 ], function ($,
     HBS,
     framework,
     formatter) {
 
-    return $.widget('zaz.performance', framework.baseGadget, {
+    return $.widget('zaz.cars', framework.baseGadget, {
         mode: 'grid',
         template: true,
         rows: 10,
@@ -25,7 +25,7 @@ define([
         _bindListeners: function () {
             var context = this;
 
-            $(this.element).find('.knobs.mode .knob').on('click keyup', function (e) {
+            this.element.find('.knobs.mode .knob').on('click keyup', function (e) {
                 var strMode = $(this).attr('data-mode');
                 if (e.type === 'click' || e.keyCode === framework.KEYS.ENTER || e.keyCode === framework.KEYS.SPACE) {
 
@@ -37,7 +37,7 @@ define([
                 }
             });
 
-            $(this.element).find('.knobs.rows .knob').on('click keyup', function (e) {
+            this.element.find('.knobs.rows .knob').on('click keyup', function (e) {
                 var intRows = parseInt($(this).attr('data-rows'));
                 if (e.type === 'click' || e.keyCode === framework.KEYS.ENTER || e.keyCode === framework.KEYS.SPACE) {
 
@@ -49,7 +49,7 @@ define([
                 }
             });
 
-            $(this.element).find('.knobs.template .knob').on('click keyup', function (e) {
+            this.element.find('.knobs.template .knob').on('click keyup', function (e) {
                 var blnTemplate;
 
                 if (e.type === 'click' || e.keyCode === framework.KEYS.ENTER || e.keyCode === framework.KEYS.SPACE) {
@@ -64,7 +64,7 @@ define([
 
         _renderLayout: function () {
 
-            var strHtml = HBS['gadgets/performance/performance']({
+            var strHtml = HBS['gadgets/cars/cars']({
                 items: framework.languageManager.translations(),
                 main: true
             });
@@ -117,7 +117,7 @@ define([
             }
 
             return framework.serviceManager.exec({
-                service: 'performance.get.config',
+                service: 'cars.get.config',
                 success: getConfigResponse,
                 error: errorConfigResponse
             });
@@ -136,7 +136,7 @@ define([
             }
             context.showLoader();
             return framework.serviceManager.exec({
-                service: 'performance.get.data',
+                service: 'cars.get.data',
                 params: {
                     count: context.rows
                 },

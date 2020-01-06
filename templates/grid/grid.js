@@ -32,7 +32,7 @@ define([
         _bindListeners: function () {
             var context = this;
 
-            $(this.element).find('.knobs.mode .knob').on('click keyup', function (e) {
+            this.element.find('.knobs.mode .knob').on('click keyup', function (e) {
                 var strMode = $(this).attr('data-mode');
                 if (e.type === 'click' || e.keyCode === framework.KEYS.ENTER || e.keyCode === framework.KEYS.SPACE) {
                     if ($(this).hasClass('active')) {
@@ -43,7 +43,7 @@ define([
                 }
             });
 
-            $(this.element).find('.knobs.template .knob').on('click keyup', function (e) {
+            this.element.find('.knobs.template .knob').on('click keyup', function (e) {
                 var blnTemplate;
                 if (e.type === 'click' || e.keyCode === framework.KEYS.ENTER || e.keyCode === framework.KEYS.SPACE) {
                     $(this).toggleClass('active');

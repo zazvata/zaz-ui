@@ -1,0 +1,27 @@
+.zaz-overlay {
+    &.new-application-overlay {
+        width: 300px;
+
+        .zaz-overlay-content {
+            .new-application-row {
+                padding: 10px;
+            }
+
+            .seperator {
+                border-top: 1px solid #ccc;
+            }
+
+            label {
+                padding-bottom: 5px;
+                display: block;
+            }
+
+            select {
+                display: block;
+                width: 100%;
+                padding: 3px;
+            }
+
+        }
+    }
+}

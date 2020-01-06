@@ -73,7 +73,7 @@ define([
         _bindListeners: function () {
             var context = this;
 
-            $(this.element).find('.knobs .knob').on('click keyup', function (e) {
+            this.element.find('.knobs .knob').on('click keyup', function (e) {
                 if (e.type === 'click' || e.keyCode === framework.KEYS.ENTER || e.keyCode === framework.KEYS.SPACE) {
                     context._widget.toggleOrientation();
                 }

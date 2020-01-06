@@ -196,7 +196,7 @@ define([
             $overlay.off('change', '.theme');
             $overlay.on('change', '.theme', function () {
                 var strColor = $(this).find('option:selected').attr('data-themecolor');
-                $overlay.find('.themeColor').val(strColor);
+                $overlay.find('.themeColor').val(strColor).trigger('change');
             });
 
             $overlay.off('change', '[data-key]');
@@ -531,7 +531,7 @@ define([
             }
             this.defaults['PREFERENCE-user-theme'] = {
                 theme: 'default',
-                themeColor: '#001327',
+                themeColor: '#004488',
                 layout: defaultTheme.layout,
                 toolbar: defaultTheme.toolbar,
                 tab: defaultTheme.tab,
@@ -582,6 +582,8 @@ define([
             $('.__header .user').attr('aria-label', strUserName);
             $('.__header .user').attr('title', strHtml);
             $('.__toolbar .user').attr('title', strHtml);
+            $('.__header .zaz-user span').html(strUserName);
+            $('.__toolbar .zaz-user span').html(strUserName);
 
         },
 

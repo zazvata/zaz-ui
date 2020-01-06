@@ -1,116 +1,124 @@
 {{#if mainbar}}
-    <div class="__mainbar">
-        <div class="left">
-            <div class="title" data-intro='This the main title of the web application'
-                    data-step="1" data-position="right">
-                <span>Zaz</span>
-                <span class="ui">UI</span>
+<div class="__mainbar">
+    <div class="left">
+        <div class="title" data-intro='This the main title of the web application' data-step="1" data-position="right">
+            <span>Zaz</span>
+            <span class="ui">UI</span>
+        </div>
+    </div>
+    <div class="zaz-user">Hello <span></span></div>
+    <div class="right">
+        <div class="knobs">
+            <div tabindex="0" class="knob notifications" data-action="notifications" data-type="action" role="button"
+                tabindex="0">
+                <i class="material-icons md-light">notifications_active</i>
+                <span class="count">0</span>
+            </div>
+            {{#if viewerMode}}
+            <div tabindex="0" class="knob user" data-action="user" data-type="action" role="button" tabindex="0"
+                aria-haspopup="true" aria-expanded="false">
+                <i class="material-icons md-light">account_circle</i>
+            </div>
+            {{/if}}
+        </div>
+    </div>
+</div>
+{{/if}}
+
+{{#if toolbar}}
+{{#if viewerMode}}
+<div class="standard">
+    <div class="left">
+        <div class="knobs" data-intro="Click here to open or reopen gadgets" data-step="2" data-position="left">
+            <div tabindex="0" class="knob" data-action="mobile" data-type="action" role="button" tabindex="0"
+                title="{{items.MOBILE-MODE}}">
+                <i class="material-icons md-light">devices</i>
+            </div>
+            <div tabindex="0" class="knob" data-action="gadgets" data-type="action" role="button" tabindex="0"
+                title="{{items.OPEN-GADGETS-MENU}}" aria-haspopup="true" aria-expanded="false">
+                <i class="material-icons md-light">picture_in_picture</i>
+            </div>
+            <div tabindex="0" class="knob" data-gadget="applications" data-type="gadget" role="button" tabindex="0"
+                title="{{items.OPEN-APPLICATIONS}}" aria-haspopup="true" aria-expanded="false">
+                <i class="material-icons md-light icon-class icon-class-applications">class</i>
+            </div>
+            <div tabindex="0" class="knob" data-gadget="applicationsChart" data-type="gadget" role="button" tabindex="0"
+                title="{{items.OPEN-APPLICATIONS-CHART}}" aria-haspopup="true" aria-expanded="false">
+                <i class="material-icons md-light icon-class icon-class-chart">insert_chart</i>
+            </div>
+            <div tabindex="0" class="knob" data-gadget="cars" data-type="gadget" role="button" tabindex="0"
+                title="Open High Performance Grid" aria-haspopup="true" aria-expanded="false">
+                <i class="material-icons md-light icon-class icon-class-cars">view_day</i>
             </div>
         </div>
-        <div class="right">
-            <div class="knobs">
-                <div tabindex="0" class="knob notifications" data-action="notifications" data-type="action" role="button" tabindex="0">
-                    <i class="material-icons md-light">notifications_active</i>
-                    <span class="count">0</span>
-                </div>
-                {{#if viewerMode}}
-                <div tabindex="0" class="knob user" data-action="user" data-type="action" role="button" tabindex="0" aria-haspopup="true" aria-expanded="false">
+    </div>
+    <div class="right">
+        <div class="knobs" data-intro="Click here to view features" data-step="3" data-position="left">
+            <div tabindex="0" class="knob" data-action="preferences" data-type="action" role="button" tabindex="0"
+                title="{{items.PREFERENCES}}">
+                <i class="material-icons md-light">settings</i>
+            </div>
+            <div tabindex="0" class="knob" data-action="viewintro" data-type="action" role="button" tabindex="0"
+                title="{{items.VIEW-INTRODUCTION}}">
+                <i class="material-icons md-light">school</i>
+            </div>
+            <div tabindex="0" class="knob" data-action="about" data-type="action" role="button" tabindex="0"
+                title="{{items.ABOUT}}" aria-haspopup="true" aria-expanded="false">
+                <i class="material-icons md-light">info</i>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="mobile">
+    <div class="left">
+        <div class="knobs">
+            {{#if viewerMode}}
+            <div tabindex="0" class="knob" data-action="user" data-type="action" role="button" tabindex="0">
+                <div class="user" role="button" aria-haspopup="true" aria-expanded="false" tabindex="0">
                     <i class="material-icons md-light">account_circle</i>
                 </div>
-                {{/if}}
+            </div>
+            {{/if}}
+        </div>
+    </div>
+    <div class="zaz-user">Hello <span></span></div>
+    <div class="right">
+        <div class="knobs">
+            <div tabindex="0" class="knob" data-action="desktop" data-type="action" role="button" tabindex="0"
+                title="{{items.DESKTOP-MODE}}">
+                <i class="material-icons md-light">devices</i>
+            </div>
+            <div tabindex="0" class="knob" data-action="gadgets" data-type="action" role="button" tabindex="0"
+                title="{{items.OPEN-GADGETS-MENU}}" aria-haspopup="true" aria-expanded="false">
+                <i class="material-icons md-light">picture_in_picture</i>
             </div>
         </div>
     </div>
-{{/if}} 
-
-{{#if toolbar}} 
-    {{#if viewerMode}}
-        <div class="standard">
-            <div class="left">
-                <div class="knobs" data-intro="Click here to open or reopen gadgets" data-step="2" data-position="left">
-                    <div tabindex="0" class="knob"  data-action="mobile" data-type="action" role="button" tabindex="0" title="{{items.MOBILE-MODE}}">
-                        <i class="material-icons md-light">devices</i>
-                    </div>
-                    <div tabindex="0" class="knob"  data-action="gadgets" data-type="action" role="button" tabindex="0" title="{{items.OPEN-GADGETS-MENU}}"
-                        aria-haspopup="true" aria-expanded="false">
-                        <i class="material-icons md-light">picture_in_picture</i>
-                    </div>
-                    <div tabindex="0" class="knob"  data-gadget="applications" data-type="gadget" role="button" tabindex="0" title="{{items.OPEN-APPLICATIONS}}"
-                        aria-haspopup="true" aria-expanded="false">
-                        <i class="material-icons md-light icon-class icon-class-applications">class</i>
-                    </div>
-                    <div tabindex="0" class="knob"  data-gadget="applicationsChart" data-type="gadget" role="button" tabindex="0" title="{{items.OPEN-APPLICATIONS-CHART}}"
-                        aria-haspopup="true" aria-expanded="false">
-                        <i class="material-icons md-light icon-class icon-class-chart">insert_chart</i>
-                    </div>
-                    <div tabindex="0" class="knob"  data-gadget="performance" data-type="gadget" role="button" tabindex="0" title="Open High Performance Grid"
-                        aria-haspopup="true" aria-expanded="false">
-                        <i class="material-icons md-light icon-class icon-class-performance">view_day</i>
-                    </div>
-                </div>
-            </div>
-            <div class="right">
-                <div class="knobs" data-intro="Click here to view features" data-step="3" data-position="left">
-                    <div tabindex="0" class="knob"  data-action="preferences" data-type="action" role="button" tabindex="0" title="{{items.PREFERENCES}}">
-                        <i class="material-icons md-light">settings</i>
-                    </div>
-                    <div tabindex="0" class="knob"  data-action="viewintro" data-type="action" role="button" tabindex="0" title="{{items.VIEW-INTRODUCTION}}">
-                        <i class="material-icons md-light">school</i>
-                    </div>
-                    <div tabindex="0" class="knob"  data-action="about" data-type="action" role="button" tabindex="0" title="{{items.ABOUT}}" aria-haspopup="true"
-                        aria-expanded="false">
-                        <i class="material-icons md-light">info</i>
-                    </div>
-                </div>
+</div>
+{{/if}}
+{{#unless viewerMode}}
+<div class="standard">
+    <div class="left">
+        <div class="knobs">
+            <div tabindex="0" class="knob" data-action="console" data-type="action" role="button" tabindex="0"
+                title="{{items.GO-TO-CONSOLE}}">
+                <i class="material-icons md-light">home</i>
             </div>
         </div>
-        <div class="mobile">
-            <div class="left">
-                <div class="knobs">
-                    {{#if viewerMode}}
-                    <div tabindex="0" class="knob"  data-action="user" data-type="action" role="button" tabindex="0">
-                        <div class="user" role="button" aria-haspopup="true" aria-expanded="false" tabindex="0">
-                            <i class="material-icons md-light">account_circle</i>
-                        </div>
-                    </div>
-                    {{/if}}
-                </div>
-            </div>
-            <div class="right">
-                <div class="knobs">
-                    <div tabindex="0" class="knob"  data-action="desktop" data-type="action" role="button" tabindex="0" title="{{items.DESKTOP-MODE}}">
-                        <i class="material-icons md-light">devices</i>
-                    </div>
-                    <div tabindex="0" class="knob"  data-action="gadgets" data-type="action" role="button" tabindex="0" title="{{items.OPEN-GADGETS-MENU}}"
-                        aria-haspopup="true" aria-expanded="false">
-                        <i class="material-icons md-light">picture_in_picture</i>
-                    </div>
-                </div>
-            </div>
-        </div>
-    {{/if}} 
-    {{#unless viewerMode}}
-        <div class="standard">
-            <div class="left">
-                <div class="knobs">
-                    <div tabindex="0" class="knob"  data-action="console" data-type="action" role="button" tabindex="0" title="{{items.GO-TO-CONSOLE}}">
-                        <i class="material-icons md-light">home</i>
-                    </div>
-                </div>
-            </div>
-            <div class="right"></div>
-        </div>
-    {{/unless}} 
-{{/if}} 
+    </div>
+    <div class="right"></div>
+</div>
+{{/unless}}
+{{/if}}
 
 {{#if usermenu}}
-    <div class="zaz-menu usermenu" aria-hidden="true">
-        <div class="items" role="menu">
-            {{#if switchUser}}
-                <div class="item" role="menuitem" tabindex="0" data-action="switchuser">{{items.SWITCH-USER}}</div>
-            {{/if}}
-            <div class="item" role="menuitem" tabindex="0" data-action="gadgets">{{items.OPEN-GADGETS-MENU}}</div>
-            <div class="item" role="menuitem" tabindex="0" data-action="preferences">{{items.PREFERENCES}}</div>
-        </div>
+<div class="zaz-menu usermenu" aria-hidden="true">
+    <div class="items" role="menu">
+        {{#if switchUser}}
+        <div class="item" role="menuitem" tabindex="0" data-action="switchuser">{{items.SWITCH-USER}}</div>
+        {{/if}}
+        <div class="item" role="menuitem" tabindex="0" data-action="gadgets">{{items.OPEN-GADGETS-MENU}}</div>
+        <div class="item" role="menuitem" tabindex="0" data-action="preferences">{{items.PREFERENCES}}</div>
     </div>
+</div>
 {{/if}}

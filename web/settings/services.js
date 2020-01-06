@@ -73,13 +73,13 @@ define([
                 }
             }
         },
-        performance: {
+        cars: {
             get: {
                 config: {
-                    url: 'gadgets/performance/performance.config.json'
+                    url: 'gadgets/cars/cars.config.json'
                 },
                 data: {
-                    url: (window.CONFIG.mock) ? 'gadgets/performance/performance#count#.data.json': globals.REST + '/cars/#count#',
+                    url: (window.CONFIG.mock) ? 'gadgets/cars/cars#count#.data.json': globals.REST + '/cars/#count#',
                     cache: {
                         age: 28800,
                         control: 'public'
@@ -94,25 +94,17 @@ define([
                     url: 'gadgets/applications/applications.config.json'
                 },
                 data: {
-                    url: globals.REST + '/applications'
+                    url: globals.REST + '/applications?userId=#userId#'
                 },
                 app: {
                     url: globals.REST + '/applications/#appnum#'
                 }
             },
             post: {
-                create: {
-                    url: globals.REST + '/applications/create?userId=#userId#&reviewer=#reviewer#&approver=#approver#'
-                },
-                review: {
-                    url: globals.REST + '/applications/#appnum#/review?userId=#userId#'
-                },
-                approve: {
-                    url: globals.REST + '/applications/#appnum#/approve?userId=#userId#'
-                }
+                url: globals.REST + '/applications'
             },
             delete: {
-                url: globals.REST + '/applications?userId=#userId#'
+                url: globals.REST + '/applications'
             }
         },
         notifications: {

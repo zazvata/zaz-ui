@@ -29,6 +29,6 @@ define([], function () {
         'PREFERENCE-applicationsChart_2-settings': 'PREFERENCE for app chart 2 gadget',
         'PREFERENCE-mapData-settings': 'PREFERENCE for map gadget',
         'PREFERENCE-applications-settings': 'PREFERENCE for applications gadget',
-        'PREFERENCE-performance-settings': 'PREFERENCE for performance gadget'
+        'PREFERENCE-cars-settings': 'PREFERENCE for cars gadget'
     };
 });

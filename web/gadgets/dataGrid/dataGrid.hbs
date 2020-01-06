@@ -15,7 +15,7 @@
 
 {{#if blnFilters}} 
 {{#each filters}}
-    <div class="filter {{#unless @index}}active{{/unless}}" data-filter="{{@key}}">{{@key}}<span class="count">{{this.length}}</span></div>
+    <div tabindex="0" class="filter {{#unless @index}}active{{/unless}}" data-filter="{{@key}}">{{@key}}<span class="count">{{this.length}}</span></div>
 {{/each}} 
 {{/if}}
 

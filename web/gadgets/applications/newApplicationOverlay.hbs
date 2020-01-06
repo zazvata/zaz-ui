@@ -1,0 +1,30 @@
+<div class="zaz-overlay new-application-overlay" tabindex="-1" aria-label="{{title}}" role="dialog">
+    <div class="zaz-overlay-header">
+        <div class="left">
+            <div class="zaz-overlay-header-title" tabindex="0">{{title}}</div>
+        </div>
+        <div class="right">
+            <i class="material-icons md-light zaz-overlay-header-close" tabindex="0" role="button"
+                title="Close">close</i>
+        </div>
+    </div>
+    <div class="zaz-overlay-content" tabindex="0" aria-live="assertive" role="alert">
+        <div class="new-application-row">
+            <label>Title of Application</label>
+            <div class="new-application-input"><input class="new-application-title" type="text"></div>
+        </div>
+        <div class="seperator"></div>
+        <div class="new-application-row">
+            <label>Select Reviewer</label>
+            <div class="new-application-reviewers"><select></select></div>
+        </div>
+        <div class="new-application-row">
+            <label>Select Approver</label>
+            <div class="new-application-approvers"><select></select></div>
+        </div>
+    </div>
+    <div class="zaz-overlay-footer">
+        <button class="button zaz-effect zaz-effect-bar-bottom" data-action="cancel" tabindex="0">Cancel</button>
+        <button class="button zaz-effect zaz-effect-bar-bottom default" data-action="ok" tabindex="0">Create</button>
+    </div>
+</div>

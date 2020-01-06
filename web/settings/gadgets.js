@@ -57,11 +57,11 @@ define([
             viewers: [globals.CONSOLE],
             roles: ['user']
         },
-        performance: {
-            title: 'PERFORMANCE',
-            desc: 'High performance grid with 100K rows of data',
+        cars: {
+            title: 'Cars',
+            desc: 'Grid with 100K rows of data',
             icon: 'view_day',
-            iconClass: 'icon-class-performance',
+            iconClass: 'icon-class-cars',
             viewers: [globals.CONSOLE],
             roles: ['user']
         },
@@ -92,29 +92,11 @@ define([
         },
 
         // viewer gadgets
-        compare: {
+        applicationInformation: {
             title: 'COMPARE',
             desc: 'A simple DIFF-MATCH-PATCH text comparison',
             icon: 'compare_arrows',
             iconClass: 'icon-class-compare',
-            viewers: ['viewer'],
-            roles: ['user', 'admin']
-        },
-        incomes: {
-            title: 'INCOMES',
-            desc: 'Grid showing filters on sample income data',
-            icon: 'attach_money',
-            iconClass: 'icon-class-income',
-            viewers: ['viewer'],
-            roles: ['user', 'admin']
-        },
-        incomesChart: {
-            title: 'INCOMESCHART',
-            desc: 'Chart showing messaging from Incomes gadget',
-            icon: 'pie_chart',
-            iconClass: 'icon-class-chart',
-            pinnable: true,
-            cloneable: true,
             viewers: ['viewer'],
             roles: ['user', 'admin']
         }

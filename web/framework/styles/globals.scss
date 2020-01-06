@@ -140,7 +140,7 @@ body {
 }
 
 $icon-class-pdf: darkred;
-$icon-class-performance: darkblue;
+$icon-class-cars: darkblue;
 $icon-class-chart: darkgreen;
 $icon-class-grid: blue;
 $icon-class-applications: darkmagenta;
@@ -158,8 +158,8 @@ $icon-class-users: rgb(110, 104, 8);
         &.icon-class-pdf {
             color: $icon-class-pdf;
         }
-        &.icon-class-performance {
-            color: $icon-class-performance;
+        &.icon-class-cars {
+            color: $icon-class-cars;
         }
         &.icon-class-chart {
             color: $icon-class-chart;
@@ -204,8 +204,8 @@ $icon-class-users: rgb(110, 104, 8);
                         &.icon-class-pdf {
                             color: $icon-class-pdf;
                         }
-                        &.icon-class-performance {
-                            color: $icon-class-performance;
+                        &.icon-class-cars {
+                            color: $icon-class-cars;
                         }
                         &.icon-class-chart {
                             color: $icon-class-chart;

@@ -58,6 +58,12 @@
         padding: 10px;
         display: flex;
         justify-content: space-between;
+
+        button {
+            &.default {
+                background-color: var(--theme-color-o2);
+            }
+        }
     }
 }
 
