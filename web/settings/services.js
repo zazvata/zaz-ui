@@ -6,10 +6,10 @@ define([
         users: {
             get: {
                 data: {
-                    url: (window.CONFIG.mock) ? 'user/users.data.json': globals.REST + '/users?project=zaz-ui'
+                    url: (window.CONFIG.mock) ? 'user/users.data.json' : globals.REST + '/users?project=zaz-ui'
                 },
                 me: {
-                    url: (window.CONFIG.mock) ? 'user/#userId#.data.json': globals.REST + '/users/#userId#'
+                    url: (window.CONFIG.mock) ? 'user/#userId#.data.json' : globals.REST + '/users/#userId#'
                     // url: globals.REST + '/me'
                 }
             }
@@ -79,12 +79,19 @@ define([
                     url: 'gadgets/cars/cars.config.json'
                 },
                 data: {
-                    url: (window.CONFIG.mock) ? 'gadgets/cars/cars#count#.data.json': globals.REST + '/cars/#count#',
+                    url: (window.CONFIG.mock) ? 'gadgets/cars/cars#count#.data.json' : globals.REST + '/cars/#count#',
                     cache: {
                         age: 28800,
                         control: 'public'
                     },
                     timeout: 120000
+                }
+            }
+        },
+        applicationInformation: {
+            get: {
+                data: {
+                    url: 'gadgets/applicationInformation/applicationInformation.data.json'
                 }
             }
         },
@@ -97,11 +104,16 @@ define([
                     url: globals.REST + '/applications?userId=#userId#'
                 },
                 app: {
-                    url: globals.REST + '/applications/#appnum#'
+                    url: globals.REST + '/applications/#id#'
                 }
             },
             post: {
-                url: globals.REST + '/applications'
+                new: {
+                    url: globals.REST + '/applications'
+                },
+                action: {
+                    url: globals.REST + '/applications/#action#'
+                }
             },
             delete: {
                 url: globals.REST + '/applications'

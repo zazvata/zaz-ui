@@ -77,15 +77,13 @@ define([
         framework.serviceManager.exec({
             service: 'applications.get.app',
             params: {
-                appnum: window.viewerId,
+                id: window.viewerId,
             },
             success: function (response) {
-                if (response.error) {
-                    window.close();
-                }
-                window.isReviewed = !!response.reviewed.time,
-                    window.isApproved = !!response.approved.time;
-                window.creator = response.created.user;
+                var response = response[0];
+                window.isReviewed = !!response.review_date;
+                window.isApproved = !!response.approve_date;
+                window.creator = response.creator.firstName;
                 deferred.resolve();
             },
             error: function (response) {

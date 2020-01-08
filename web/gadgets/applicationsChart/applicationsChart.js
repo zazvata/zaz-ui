@@ -19,10 +19,8 @@ define([
             config: [],
             data: {
                 'active': [],
-                'posted': [],
-                'completed': [],
                 'review': [],
-                'approve': [],
+                'approved': [],
                 'all': []
             }
         },
@@ -44,7 +42,6 @@ define([
                         case 'created':
                         case 'reviewed':
                         case 'approved':
-                        case 'deleted':
                             this._getData();
                             break;
                         default:
@@ -124,6 +121,9 @@ define([
 
             return framework.serviceManager.exec({
                 service: 'applications.get.data',
+                params: {
+                    userId: window.USERID
+                },
                 success: getDataResponse,
                 error: errorDataResponse
             }).always(function () {
@@ -153,9 +153,7 @@ define([
             var context = this;
 
             this.options.data.review = [];
-            this.options.data.approve = [];
-            this.options.data.completed = [];
-            this.options.data.posted = [];
+            this.options.data.approved = [];
             this.options.data.active = [];
 
             $.each(this.options.data.all, function (i, dataSet) {
@@ -178,7 +176,7 @@ define([
         },
 
         _processData: function () {
-            var filters = ['active', 'posted', 'completed', 'review', 'approve', 'all'],
+            var filters = ['active', 'review', 'approved', 'all'],
                 columnsData = {},
                 pieData = {
                     '0-10 series': 0,

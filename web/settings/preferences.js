@@ -19,6 +19,7 @@ define([], function () {
 
         //standard gadget preferences - follow format PREFERENCE-gadgetName-key;
         //##template
+		'PREFERENCE-applicationInformation-settings': 'PREFERENCE for applicationInformation Gadget',
         'PREFERENCE-news-settings': 'PREFERENCE for news gadget',
         'PREFERENCE-chart-settings': 'PREFERENCE for chart gadget',
         'PREFERENCE-chart_1-settings': 'PREFERENCE for chart 1 gadget',

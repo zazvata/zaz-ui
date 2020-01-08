@@ -6,6 +6,7 @@ define([
     'gadgets/applications/applicationManager',
     'widgets/zazGrid/zazGrid',
     'widgets/zazOverlay/zazOverlay',
+    'widgets/zazAlert/zazAlert',
     'css!gadgets/applications/applications'
 ], function ($,
     HBS,
@@ -105,6 +106,17 @@ define([
                     framework.windowManager.openViewer(options);
                 }
             });
+
+            this.element.off('click keyup', '.mark-action');
+            this.element.on('click keyup', '.mark-action', function (e) {
+                var strAppId;
+
+                if (e.type === 'click' || e.keyCode === framework.KEYS.ENTER || e.keyCode === framework.KEYS.SPACE) {
+                    strAppId = $(this).attr('data-appid');
+                    strAction = $(this).attr('data-action');
+                    context._markAction(strAppId, strAction);
+                }
+            });
         },
 
         _receiveMessage: function (e) {
@@ -176,7 +188,6 @@ define([
                 context.data.all = response;
                 context._populateAndFiterData();
                 context._renderData();
-                context._updateCounts();
             }
 
             return framework.serviceManager.exec({
@@ -191,8 +202,43 @@ define([
             });
         },
 
+        _markAction: function (strAppId, strAction) {
+            var context = this,
+                params = {};
+
+            function error(response, textStatus) {
+                zazAlert(returnElement, 'Error', 'There was an error!. Please retry later');
+            }
+
+            function success(response) {
+                context._getData();
+            }
+
+            params = {
+                userId: window.USERID,
+                id: strAppId
+            };
+
+            framework.serviceManager.exec({
+                service: 'applications.post.action',
+                params: {
+                    action: strAction
+                },
+                data: JSON.stringify(params),
+                success: success,
+                error: error,
+                type: 'POST'
+            });
+        },
+
         _populateAndFiterData: function () {
             var context = this;
+
+            //reset to empty
+            context.data.approved = [];
+            context.data.review = [];
+            context.data.active = [];
+
             $.each(this.data.all, function (i, row) {
                 row.createdBy = (row.creator) ? row.creator.lastName + ', ' + row.creator.firstName : 'N/A';
                 row.reviewedBy = (row.reviewer) ? row.reviewer.lastName + ', ' + row.reviewer.firstName : 'N/A';
@@ -251,6 +297,8 @@ define([
                 }
             });
             this._grid = context.$grid.zazGrid('instance');
+
+            this._updateCounts();
         },
 
         _updateCounts: function (blnInitialLoad) {
@@ -273,7 +321,8 @@ define([
                 switch (column.id) {
                     case 'id':
                         column.formatter = function (data) {
-                            return '<div class="viewlink" tabindex="0" data-viewerid="' + data[column.id] + '">' + data[column.id] + '</div>';
+                            return '<div class="viewlink" tabindex="0" data-viewerid="' + data[column.id] + '">' +
+                                data[column.id] + '</div>';
                         };
                         break;
                     case 'create_date':
@@ -290,11 +339,11 @@ define([
                     case 'action':
                         column.formatter = function (data) {
                             //return data[column.id];
-                            if (data.reviewer.userId === window.USERID) {
-                                return '<button class="mark-reviewed">Review</button>';
+                            if (data.reviewer.userId === window.USERID && !data.review_date) {
+                                return '<button class="mark-action mark-reviewed" data-action="review" data-appid="' + data.id + '">Review</button>';
                             }
-                            if (data.approver.userId === window.USERID) {
-                                return '<button class="mark-approved">Approve</button>';
+                            if (data.approver.userId === window.USERID && !data.approve_date) {
+                                return '<button class="mark-action mark-approved" data-action="approve" data-appid="' + data.id + '">Approve</button>';
                             }
                         };
                         break;

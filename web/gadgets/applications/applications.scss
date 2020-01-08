@@ -15,22 +15,24 @@
                 color: RGB(var(--theme-color));
             }
 
-            .mark-reviewed {
+            .mark-action {
                 border-radius: 4px;
-                background-color: #306CA8;
                 border: none;
                 color: white;
                 padding: 4px;
                 font-size: 80%;
-            }
 
-            .mark-approved {
-                border-radius: 4px;
-                background-color: #237318;
-                border: none;
-                color: white;
-                padding: 4px;
-                font-size: 80%;
+                &.mark-reviewed {
+                    background-color: #306CA8;
+                }
+
+                &.mark-approved {
+                    background-color: #237318;
+                }
+
+                &:focus {
+                    opacity: 0.8;
+                }
             }
         }
     }

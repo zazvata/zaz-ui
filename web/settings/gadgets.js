@@ -93,12 +93,12 @@ define([
 
         // viewer gadgets
         applicationInformation: {
-            title: 'COMPARE',
-            desc: 'A simple DIFF-MATCH-PATCH text comparison',
-            icon: 'compare_arrows',
-            iconClass: 'icon-class-compare',
+            title: 'Application',
+            desc: 'Simple Information gadget',
+            icon: 'extension',
+            iconClass: 'icon-class-extension',
             viewers: ['viewer'],
             roles: ['user', 'admin']
-        }
+        },
     };
 });

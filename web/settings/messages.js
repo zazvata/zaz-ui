@@ -3,6 +3,7 @@ define([], function () {
     return {
         //user gadget framework messages - follow format MESSAGE-gadget-action
         //##template
+		'MESSAGE-applicationInformation-data': 'Message sent by applicationInformation Gadget',
         'MESSAGE-grid-data': 'Message sent by Grid Gadget',
 
         //standard gadget framework messages - follow format MESSAGE-gadget-action

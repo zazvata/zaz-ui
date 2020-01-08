@@ -146,7 +146,7 @@ define([
             }
 
             framework.serviceManager.exec({
-                service: 'applications.post',
+                service: 'applications.post.new',
                 data: JSON.stringify(params),
                 success: success,
                 error: error,

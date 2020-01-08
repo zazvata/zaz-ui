@@ -157,6 +157,7 @@ define([
 
             if (isExtended) {
                 gadgets = this.getExtendedWindowGadgets();
+                debugger
                 return gadgets;
             }
 
@@ -193,17 +194,8 @@ define([
             } else {
                 viewerId = uriManager.get('viewerId');
                 gadgets = [{
-                        zone: 'main-left',
-                        script: 'incomes',
-                        active: true,
-                        window: window.name,
-                        data: {
-                            gadgetid: viewerId
-                        }
-                    },
-                    {
-                        zone: 'main-right',
-                        script: 'incomesChart',
+                        zone: 'main',
+                        script: 'applicationInformation',
                         active: true,
                         window: window.name,
                         data: {
