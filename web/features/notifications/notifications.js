@@ -39,8 +39,8 @@ define([
             switch (action) {
                 case 'MESSAGE-server-message':
                     switch (options.action) {
-                        case 'created':
-                            text = notifications.handleCreated(data);
+                        case 'submitted':
+                            text = notifications.handleSubmitted(data);
                             break;
                         case 'reviewed':
                             text = notifications.handleReviewed(data);
@@ -110,14 +110,14 @@ define([
         });
     };
 
-    notifications.handleCreated = function (data) {
+    notifications.handleSubmitted = function (data) {
         var text;
 
-        if (window.USERID === data.reviewed.userId.toString()) {
+        if (window.USERID === data.reviewer) {
             text = 'You have been assigned as a reviewer for a new application #' + data.id + '.';
         }
 
-        if (window.USERID === data.approved.userId.toString()) {
+        if (window.USERID === data.approver) {
             text = 'You have been assigned as an approver for a new application #' + data.id + '.';
         }
 
@@ -131,11 +131,11 @@ define([
             return user.firstName + ' ' + user.lastName;
         }
 
-        if (window.USERID === data.created.userId.toString()) {
-            text = 'Your application #' + data.id + ' has been submitted by ' + getName(data.reviewed.user || data.reviewed) + ' for approval.';
+        if (window.USERID === data.creator.userId) {
+            text = 'Your application #' + data.id + ' has been submitted by ' + getName(data.reviewer) + ' for approval.';
         }
 
-        if (window.USERID === data.approved.userId.toString()) {
+        if (window.USERID === data.approver.userid) {
             text = 'The application #' + data.id + ' is ready for your approval.';
         }
 
@@ -149,12 +149,12 @@ define([
             return user.firstName + ' ' + user.lastName;
         }
 
-        if (window.USERID === data.created.userId.toString()) {
-            text = 'Your application #' + data.id + ' has been approved by ' + getName(data.approved.user || data.approved) + '.';
+        if (window.USERID === data.creator.userId) {
+            text = 'Your application #' + data.id + ' has been approved by ' + getName(data.approver) + '.';
         }
 
-        if (window.USERID === data.reviewed.userId.toString()) {
-            text = 'Your reviewed application #' + data.id + ' has been approved by ' + getName(data.approved.user || data.approved) + '.';
+        if (window.USERID === data.reviewer.userId) {
+            text = 'Your reviewed application #' + data.id + ' has been approved by ' + getName(data.approver) + '.';
         }
 
         return text;
@@ -208,8 +208,8 @@ define([
         $.each(data, function (i, notification) {
             notification.id = notification.appNumber;
             switch (notification.action) {
-                case 'created':
-                    text = notifications.handleCreated(notification);   
+                case 'submitted':
+                    text = notifications.handleSubmitted(notification);   
                     break;
                 case 'reviewed':
                     text = notifications.handleReviewed(notification);

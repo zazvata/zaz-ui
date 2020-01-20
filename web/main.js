@@ -34,6 +34,7 @@ require.config({
         'highcharts': 'vendor/highcharts/highcharts',
         'highcharts-3d': 'vendor/highcharts/highcharts-3d',
         'highcharts-drag3d': 'vendor/highcharts/draggable-3d',
+        'highcharts-themes': 'vendor/highcharts/themes',
 
         'maps': 'https://maps.googleapis.com/maps/api/js?key=AIzaSyDWw9j1kXSkI1-Hem_6BjoR_vVTiePTsJg',
         'handlebars': 'vendor/handlebars/handlebars.runtime.min',
@@ -52,7 +53,6 @@ require.config({
         'highlight': 'vendor/jquery.highlight/jquery.highlight',
         'throttle-debounce': 'vendor/jquery.throttle-debounce/jquery.ba-throttle-debounce',
         'socket.io': 'vendor/socket.io/socket.io.min',
-        'dmp': 'vendor/diff_match_patch/diff_match_patch',
         'intro': 'vendor/intro/intro.min',
         'wheelcolorpicker': 'vendor/jquery.wheelcolorpicker/jquery.wheelcolorpicker.min',
         'ResizeSensor': 'vendor/resize-sensor/ResizeSensor',
@@ -95,10 +95,7 @@ require.config({
             deps: ['highcharts']
         },
         'highcharts-drag3d': {
-            deps: ['highcharts', 'highcharts-3d']
-        },
-        'dmp': {
-            exports: 'diff_match_patch'
+            deps: ['highcharts-3d']
         },
         'intro': {
             exports: 'introJs'

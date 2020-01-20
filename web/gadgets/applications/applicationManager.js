@@ -15,6 +15,24 @@ define([
         user: null,
         deferred: null,
 
+        newId: function () {
+            var length = 3;
+            var timestamp = new Date().getTime();
+            var ts = timestamp.toString();
+            var parts = ts.split('').reverse();
+            var id = '';
+    
+            function _getRandomInt(min, max) {
+                return Math.floor(Math.random() * (max - min + 1)) + min;
+            };
+    
+            for (var i = 0; i < length; ++i) {
+                var index = _getRandomInt(0, parts.length - 1);
+                id += parts[index];
+            }
+            return id;
+        },
+
         show: function () {
             var context = this;
             
@@ -26,6 +44,7 @@ define([
                     title: 'New Application',
                     'button-click': context._handleButtonClick.bind(context)
                 });
+                context.$overlay.find('.new-application-title').val('App-' + context.newId())
             });
 
             return this.deferred.promise();

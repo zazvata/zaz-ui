@@ -20,8 +20,8 @@ define([
         filter: 'all',
         data: {
             all: [],
-            active: [],
-            review: [],
+            submitted: [],
+            reviewed: [],
             approved: []
         },
 
@@ -126,7 +126,7 @@ define([
             switch (message.action) {
                 case 'MESSAGE-server-message':
                     switch (options.action) {
-                        case 'created':
+                        case 'submitted':
                         case 'reviewed':
                         case 'approved':
                             this._newItem = options.data.id;
@@ -207,7 +207,7 @@ define([
                 params = {};
 
             function error(response, textStatus) {
-                zazAlert(returnElement, 'Error', 'There was an error!. Please retry later');
+                zazAlert.show(returnElement, 'Error', 'There was an error!. Please retry later');
             }
 
             function success(response) {
@@ -235,23 +235,21 @@ define([
             var context = this;
 
             //reset to empty
-            context.data.approved = [];
-            context.data.review = [];
-            context.data.active = [];
+            this.data.approved = [];
+            this.data.reviewed = [];
+            this.data.submitted = [];
 
             $.each(this.data.all, function (i, row) {
                 row.createdBy = (row.creator) ? row.creator.lastName + ', ' + row.creator.firstName : 'N/A';
                 row.reviewedBy = (row.reviewer) ? row.reviewer.lastName + ', ' + row.reviewer.firstName : 'N/A';
                 row.approvedBy = (row.approver) ? row.approver.lastName + ', ' + row.approver.firstName : 'N/A';
 
-                if (row.approver.userId === window.USERID) {
+                if (row.approve_date) {
                     context.data.approved.push(row);
-                }
-                if (row.reviewer.userId === window.USERID) {
-                    context.data.review.push(row);
-                }
-                if (row.creator.userId === window.USERID) {
-                    context.data.active.push(row);
+                } else if (row.review_date) {
+                    context.data.reviewed.push(row);
+                } else {
+                    context.data.submitted.push(row);
                 }
             });
         },
@@ -259,6 +257,8 @@ define([
         _renderData: function () {
             var context = this,
                 $newItem;
+
+            this._updateCounts();
 
             if (this._grid) {
                 this.$grid.zazGrid('setData', this.data[this.filter]);
@@ -297,8 +297,6 @@ define([
                 }
             });
             this._grid = context.$grid.zazGrid('instance');
-
-            this._updateCounts();
         },
 
         _updateCounts: function (blnInitialLoad) {
@@ -330,7 +328,7 @@ define([
                     case 'approve_date':
                         column.formatter = function (data) {
                             if (data[column.id]) {
-                                return formatter.dateFormat.format(data[column.id], 'DD/MM/YYYY');
+                                return formatter.dateFormat.format(data[column.id], 'DD MMM YY');
                             } else {
                                 return 'N/A';
                             }
@@ -338,7 +336,6 @@ define([
                         break;
                     case 'action':
                         column.formatter = function (data) {
-                            //return data[column.id];
                             if (data.reviewer.userId === window.USERID && !data.review_date) {
                                 return '<button class="mark-action mark-reviewed" data-action="review" data-appid="' + data.id + '">Review</button>';
                             }

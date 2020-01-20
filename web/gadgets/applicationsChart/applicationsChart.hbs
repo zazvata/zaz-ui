@@ -1,3 +1,4 @@
+{{#if main}}
 <div class="container zaz-effect zaz-effect-bar-top">
     <div class="gadget-controls">
         <div class="controls-bar">
@@ -7,16 +8,41 @@
         </div>
         <div class="controls-bar">
             <div class="knobs">
-                <div tabindex="0" class="knob active" data-view="columns" title="View as Columns Chart">
+                <div tabindex="0" class="knob type active" data-view="columns" title="View as Columns Chart">
                     <i class="material-icons md-light">insert_chart</i>
                     <label>Columns</label>
                 </div>
-                <div tabindex="0" class="knob"  data-view="pie" title="View as Pie Chart">
+                <div tabindex="0" class="knob type" data-view="pie" title="View as Pie Chart">
                     <i class="material-icons md-light">pie_chart</i>
                     <label>Pie</label>
+                </div>
+            </div>
+            <div class="knobs" style="margin-left: 10px;">
+                <div tabindex="0" class="knob theme" title="Set theme for the Chart">
+                    <label>Theme</label>
                 </div>
             </div>
         </div>
     </div>
     <div class="chart"></div>
 </div>
+{{/if}}
+
+{{#if thememenu}}
+<div class="zaz-menu thememenu" aria-hidden="true">
+    <div class="items" role="menu">
+        <div class="item" role="menuitem" tabindex="0" data-action="standard">Standard</div>
+        <div class="item" role="menuitem" tabindex="0" data-action="avocado">Avocado</div>
+        <div class="item" role="menuitem" tabindex="0" data-action="darkblue">Dark Blue</div>
+        <div class="item" role="menuitem" tabindex="0" data-action="darkgreen">Dark Green</div>
+        <div class="item" role="menuitem" tabindex="0" data-action="darkunica">Dark Unica</div>
+        <div class="item" role="menuitem" tabindex="0" data-action="gray">Gray</div>
+        <div class="item" role="menuitem" tabindex="0" data-action="grid">Grid</div>
+        <div class="item" role="menuitem" tabindex="0" data-action="gridlight">Grid Light</div>
+        <div class="item" role="menuitem" tabindex="0" data-action="highcontrastdark">High-contrast Dark</div>
+        <div class="item" role="menuitem" tabindex="0" data-action="highcontrastlight">High-contrast Light</div>
+        {{!-- <div class="item" role="menuitem" tabindex="0" data-action="skies">Skies</div>
+        <div class="item" role="menuitem" tabindex="0" data-action="sunset">Sunset</div> --}}
+    </div>
+</div>
+{{/if}}

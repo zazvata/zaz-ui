@@ -116,7 +116,7 @@ define([
                 }
             },
             delete: {
-                url: globals.REST + '/applications'
+                url: globals.REST + '/applications?userId=#userId#'
             }
         },
         notifications: {
