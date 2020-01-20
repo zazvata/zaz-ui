@@ -1,4 +1,4 @@
-window.version = '5.19.1110a';
+window.version = '5.20.0119a';
 
 //return time stamp upto hour
 function getTimestamp() {
