@@ -31,6 +31,9 @@ define([
             header: {
                 title: 'User Information'
             },
+            footer: {
+                enabled: false
+            },
             sections: [{
                     enabled: true,
                     groups: [{

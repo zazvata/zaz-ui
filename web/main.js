@@ -1,4 +1,4 @@
-window.version = '5.20.0119a';
+window.version = '5.20.0120c';
 
 //return time stamp upto hour
 function getTimestamp() {
@@ -36,7 +36,7 @@ require.config({
         'highcharts-drag3d': 'vendor/highcharts/draggable-3d',
         'highcharts-themes': 'vendor/highcharts/themes',
 
-        'maps': 'https://maps.googleapis.com/maps/api/js?key=AIzaSyDWw9j1kXSkI1-Hem_6BjoR_vVTiePTsJg',
+        'maps': 'https://maps.googleapis.com/maps/api/js?v=3.40&key=AIzaSyDAtTF1CR4CFulVdodbWJHANtc4sWp_xtM',
         'handlebars': 'vendor/handlebars/handlebars.runtime.min',
         'handlebars-helpers': 'common/handlebars-helpers',
 
@@ -190,7 +190,7 @@ require([
         });
     }
 
-    if (/login|access|config|harness/.test(strViewer)) {
+    if (/login|access|config|harness|swagger/.test(strViewer)) {
         _openPage(strViewer);
     } else {
         require(['bootstrap'], function (bootstrap) {

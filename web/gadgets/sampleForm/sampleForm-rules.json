@@ -1,0 +1,86 @@
+{
+    "legalOrganization": [
+        {
+            "rule": "individualNameInfo.givenName=null,individualNameInfo.middleName=null,individualNameInfo.familyName=null",
+            "attributes": {
+                "disabled": null,
+                "required": ""
+            }
+        }
+    ],
+    "individualNameInfo.givenName": [
+        {
+            "rule" : "legalOrganization=null",
+            "attributes": {
+                "disabled": null,
+                "required": ""
+            }
+        }
+    ],
+    "individualNameInfo.middleName": [
+        {
+            "rule" : "legalOrganization=null",
+            "attributes": {
+                "disabled": null
+            }
+        }
+    ],
+    "individualNameInfo.familyName": [
+        {
+            "rule" : "legalOrganization=null",
+            "attributes": {
+                "disabled": null,
+                "required": ""
+            }
+        }
+    ],
+    "individualNameInfo.suffix": [
+        {
+            "rule" : "legalOrganization=null",
+            "attributes": {
+                "disabled": null
+            }
+        }
+    ],
+    "postalAddress.state-select": [
+        {
+            "rule" : "postalAddress.countryCode!=US,postalAddress.countryCode!=CA",
+            "attributes": {
+                "required": null,
+                "style": "display: none;"
+            }
+        }
+    ],
+    "postalAddress.state-input": [
+        {
+            "rule" : "postalAddress.countryCode=US|postalAddress.countryCode=CA",
+            "attributes": {
+                "required": null,
+                "style": "display: none;"
+            }
+        }
+    ],
+    "postalAddress.postalCode": [
+        {
+            "rule" : "postalAddress.countryCode=US",
+            "attributes": {
+                "pattern": "[0-9]{5}-[0-9]{4}"
+            },
+            "opposite": false
+        },
+        {
+            "rule" : "postalAddress.countryCode=CA",
+            "attributes": {
+                "pattern": "[A-Z]{1}[0-9]{1}[A-Z]{1} [0-9]{1}[A-Z]{1}[0-9]{1}"
+            },
+            "opposite": false
+        },
+        {
+            "rule" : "postalAddress.countryCode!=US,postalAddress.countryCode!=CA",
+            "attributes": {
+                "pattern": null
+            },
+            "opposite": false
+        }
+    ]
+}

@@ -13,8 +13,7 @@ define([
 
     return $.widget('zaz.mapData', framework.baseGadget, {
 
-        data: [
-            {
+        data: [{
                 coordinates: [38.3466672, -81.6301627],
                 age: 2,
                 wearTear: 20
@@ -87,14 +86,8 @@ define([
             this._super();
             this._renderLayout();
             this._renderData();
-            this._loadData();
-            this._bindListeners();
 
             this._resize();
-        },
-
-        _bindListeners: function () {
-
         },
 
         _renderLayout: function () {
@@ -105,30 +98,6 @@ define([
             this.element.append(strHtml);
         },
 
-        _loadData: function () {
-            var deferred = $.Deferred();
-                // context = this;
-
-            // context._getData().done(function () {
-            //     context._renderData();
-            //     deferred.resolve();
-            // });
-
-            return deferred.promise();
-        },
-
-        _getData: function () {
-            var context = this;
-
-            return framework.serviceManager.exec({
-                service: 'map.get',
-                success: function () {},
-                error: function () {}
-            }).always(function () {
-                context.hideLoader();
-            });
-        },
-
         _renderData: function () {
             var context = this,
                 center = {
@@ -136,12 +105,23 @@ define([
                     lng: -97.9575328
                 };
 
-            this.map = new google.maps.Map(this.element.find('.container')[0], {
+            this.map = new google.maps.Map(this.element.find('.gadget-container')[0], {
                 zoom: this.preferences.zoom || 5,
                 center: this.preferences.center || center
             });
 
-            $.each(this.data, function(i, property) {
+            this.map.addListener('center_changed', $.debounce(250, function () {
+                context.preferences = {
+                    center: {
+                        lat: context.map.getCenter().lat(),
+                        lng: context.map.getCenter().lng()
+                    },
+                    zoom: context.map.getZoom()
+                }
+                context.setPreferences();
+            }));
+
+            $.each(this.data, function (i, property) {
                 var position = {
                         lat: property.coordinates[0],
                         lng: property.coordinates[1]
@@ -159,32 +139,16 @@ define([
                         icon: context._getIcon(property)
                     });
 
-                marker.addListener('click', function() {
+                marker.addListener('click', function () {
                     context.map.panTo(marker.position);
-
-                    // if (context.map.zoom >=8) {
-                    //     return true;
-                    // }
-
-
-                    // context.map.addListener('zoom_changed', function () {
-                    //     if (context.map.zoom >= 8) {
-                    //         google.maps.event.clearListeners(context.map, 'zoom_changed');
-                    //         return true;
-                    //     }
-                    //     setTimeout(function () {
-                    //         context.map.setZoom(context.map.zoom + 1);
-                    //     }, 150);
-                    // });
-
                     context.map.setZoom(8);
                 });
 
-                marker.addListener('mouseover', function() {
+                marker.addListener('mouseover', function () {
                     infoWindow.open(context.map, marker);
                 });
 
-                marker.addListener('mouseout', function() {
+                marker.addListener('mouseout', function () {
                     infoWindow.close();
                 });
             });
@@ -208,18 +172,6 @@ define([
             if (property.wearTear <= 100) {
                 return 'images/maps/red_MarkerE.png';
             }
-        },
-
-        _destroy: function () {
-            this.preferences = {
-                center: {
-                    lat: this.map.getCenter().lat(),
-                    lng: this.map.getCenter().lng()
-                },
-                zoom: this.map.getZoom()
-            }
-            this.setPreferences();
-            this._super();
         }
     });
 });

@@ -24,26 +24,6 @@
                         .zaz-form-label {
                             width: 200px;
                         }
-
-                        .zaz-form-control {
-
-                            input,
-                            select,
-                            textarea,
-                            .checkmark {
-                                border: 1px solid transparent;
-                                background-color: #f3f3f3;
-                                outline: none;
-                            }
-
-                            input:focus,
-                            select:focus,
-                            textarea:focus {
-                                border-bottom-color: blue;
-                                background-color: #f3f3f3;
-                            }
-                        }
-
                     }
                 }
             }
@@ -73,26 +53,6 @@
                             text-align: right;
                             padding-right: 0;
                         }
-
-                        .zaz-form-control {
-
-                            input,
-                            select,
-                            textarea,
-                            .checkmark {
-                                border: 1px solid transparent;
-                                background-color: #f3f3f3;
-                                outline: none;
-                            }
-
-                            input:focus,
-                            select:focus,
-                            textarea:focus {
-                                border-bottom-color: blue;
-                                background-color: #f3f3f3;
-                            }
-                        }
-
                     }
                 }
             }
@@ -139,25 +99,6 @@
                             width: 200px;
                         }
 
-                        .zaz-form-control {
-
-                            input,
-                            select,
-                            textarea,
-                            .checkmark {
-                                border: 1px solid transparent;
-                                background-color: #fff;
-                                outline: none;
-                            }
-
-                            input:focus,
-                            select:focus,
-                            textarea:focus {
-                                border-bottom-color: blue;
-                                background-color: #fff;
-                            }
-                        }
-
                     }
                 }
             }
@@ -189,26 +130,6 @@
                             background-color: var(--theme-color-o2);
                             width: 200px;
                         }
-
-                        .zaz-form-control {
-
-                            input,
-                            select,
-                            textarea,
-                            .checkmark {
-                                border: 1px solid transparent;
-                                background-color: var(--theme-color-o2);
-                                outline: none;
-                            }
-
-                            input:focus,
-                            select:focus,
-                            textarea:focus {
-                                border-bottom-color: blue;
-                                background-color: var(--theme-color-o2);
-                            }
-                        }
-
                     }
                 }
             }
@@ -270,26 +191,9 @@
                             width: 200px;
                         }
 
-                        .zaz-form-control {
+                        zaz-form-control {
                             background-color: var(--theme-color-o2);
-
-                            input,
-                            select,
-                            textarea,
-                            .checkmark {
-                                border: 1px solid transparent;
-                                background-color: #f3f3f3;
-                                outline: none;
-                            }
-
-                            input:focus,
-                            select:focus,
-                            textarea:focus {
-                                border-bottom-color: blue;
-                                background-color: #f3f3f3;
-                            }
                         }
-
                     }
                 }
             }
@@ -322,6 +226,7 @@
             }
         }
     }
+
     &[data-theme="theme-style2"] {
         .zaz-form-items {
             .zaz-form-section {
@@ -331,14 +236,15 @@
                             text-align: left;
                         }
                     }
+
                     .zaz-form-control {
                         flex: 1;
-            
+
                         input,
                         select,
                         textarea {
                             width: 100%;
-            
+
                             &[type="checkbox"],
                             &[type="radio"] {
                                 width: auto;
@@ -349,6 +255,7 @@
             }
         }
     }
+
     &[data-theme="theme-style4"] {
         .zaz-form-items {
             .zaz-form-section {
@@ -375,6 +282,7 @@
             }
         }
     }
+
     &[data-theme="theme-style5"] {
         .zaz-form-items {
             .zaz-form-section {

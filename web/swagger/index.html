@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Swagger YAML Viewer</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="assets/jquery.min.js"></script>
+    <script src="assets/js-yaml.js"></script>
+    <script src="assets/swagger.js"></script>
+    <link rel="stylesheet" href="assets/swagger.css">
+</head>
+
+<body>
+    <div class="__swagger">
+        <div class="header">
+            <div class="title">Swagger YAML Viewer</div>
+            <div class="controls">
+                <div class="filter">
+                    <label>Filter</label>
+                    <input class="yaml-filter">
+                </div>
+                <div class="loader">
+                    <input class="yaml-link" value="sample.yaml">
+                    <button class="yaml-load">Load</button>
+                </div>
+            </div>
+            <div class="alert">Too small to display!</div>
+        </div>
+        <div class="main">
+            <div class="paths"></div>
+        </div>
+    </div>
+
+</body>
+
+</html>

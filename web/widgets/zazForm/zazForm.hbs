@@ -1,23 +1,69 @@
-<div class="zaz-form" data-theme="theme-{{form.format.theme}}" data-stepmode="{{form.format.stepmode}}"
-    data-labels="{{form.format.labels}}" data-controls="{{form.format.controls}}"
-    data-grouptitles="{{form.format.grouptitles}}" data-formtitle="{{form.format.formtitle}}">
+{{#if form}}
+<form novalidate class="zaz-form" data-theme="theme-{{config.format.theme}}" data-stepmode="{{config.format.stepmode}}"
+    data-labels="{{config.format.labels}}" data-controls="{{config.format.controls}}"
+    data-grouptitles="{{config.format.grouptitles}}" data-formtitle="{{config.format.formtitle}}">
+    {{#if config.header.enabled}}
     {{> form-header}}
+    {{/if}}
     {{> form-items}}
+    {{#if config.footer.enabled}}
     {{> form-footer}}
-</div>
+    {{/if}}
+    {{#if config.errors.enabled}}
+    {{> form-errors}}
+    {{/if}}
+</form>
+{{/if}}
+
+{{#if errors}}
+{{#each items}}
+<div class="zaz-form-error" data-error-field="{{this.field}}">{{this.field}} - {{this.message}}</div>
+{{/each}}
+{{/if}}
 
 {{#*inline "form-header"}}
 <div class="zaz-form-header">
-    <div class="zaz-form-header-title">{{form.header.title}}</div>
+    <div class="zaz-form-header-title">{{config.header.title}}</div>
+    <div class="zaz-form-error-link">View <span></span> error(s)</div>
 </div>
 {{/inline}}
 
 {{#*inline "form-items"}}
 <div class="zaz-form-items">
-    {{#each form.sections as |section|}}
+    {{#each config.sections as |section|}}
     {{> form-section section=section}}
     {{/each}}
 </div>
+{{/inline}}
+
+{{#*inline "form-footer"}}
+<div class="zaz-form-footer">
+    <button type="button" class="button zaz-effect zaz-effect-bar-bottom" data-action="prev">
+        Prev
+    </button>
+    <button type="button" class="button zaz-effect zaz-effect-bar-bottom" data-action="next">
+        Next
+    </button>
+    <button class="button zaz-effect zaz-effect-bar-bottom" data-action="clear">
+        Clear
+    </button>
+    <button class="button zaz-effect zaz-effect-bar-bottom" data-action="undo">
+        Undo
+    </button>
+    <button class="button zaz-effect zaz-effect-bar-bottom" data-action="add">
+        Add
+    </button>
+    <button class="button zaz-effect zaz-effect-bar-bottom" data-action="delete">
+        Delete
+    </button>
+    <button class="button zaz-effect zaz-effect-bar-bottom default" data-action="submit">
+        Submit
+    </button>
+</div>
+{{/inline}}
+
+{{#*inline "form-errors"}}
+<div class="zaz-form-errors"></div>
 {{/inline}}
 
 {{#*inline "form-section"}}
@@ -39,9 +85,12 @@
 
 {{#*inline "form-field"}}
 <div class="zaz-form-field" data-enabled="{{field.enabled}}">
-    <div class="zaz-form-label">{{field.label}}</div>
+    <div class="zaz-form-label {{#if field.required}}required{{/if}}">{{field.label}}</div>
     <div class="zaz-form-control" data-type="{{field.type}}">
         {{#switch field.type}}
+        {{#case "label"}}
+        {{> form-label}}
+        {{/case}}
         {{#case "text"}}
         {{> form-text}}
         {{/case}}
@@ -66,29 +115,51 @@
         {{#case "textarea"}}
         {{> form-textarea}}
         {{/case}}
+        {{#case "color"}}
+        {{> form-color}}
+        {{/case}}
+        {{#case "date"}}
+        {{> form-date}}
+        {{/case}}
+        {{#case "file"}}
+        {{> form-file}}
+        {{/case}}
+        {{#case "month"}}
+        {{> form-month}}
+        {{/case}}
+        {{#case "tel"}}
+        {{> form-tel}}
+        {{/case}}
+        {{#case "time"}}
+        {{> form-time}}
+        {{/case}}
         {{/switch}}
     </div>
 </div>
 {{/inline}}
 
+{{#*inline "form-label"}}
+<div name="{{field.name}}" style="width:{{field.width}}px;"></div>
+{{/inline}}
+
 {{#*inline "form-text"}}
-<input name="{{field.name}}" type="text" style="width:{{field.width}}px;"
-    class="{{#if field.required}}zaz-required{{/if}}">
+<input name="{{field.name}}" data-field="{{field.name}}" type="text" style="width:{{field.width}}px;" {{#if field.required}}required{{/if}}
+    {{#if field.readonly}}readonly{{/if}}>
 {{/inline}}
 
 {{#*inline "form-email"}}
-<input name="{{field.name}}" type="email" style="width:{{field.width}}px;"
-    class="{{#if field.required}}zaz-required{{/if}}">
+<input name="{{field.name}}" data-field="{{field.name}}" type="email" style="width:{{field.width}}px;" {{#if field.required}}required{{/if}}
+    {{#if field.readonly}}readonly{{/if}}>
 {{/inline}}
 
 {{#*inline "form-number"}}
-<input name="{{field.name}}" type="number" style="width:{{field.width}}px;"
-    class="{{#if field.required}}zaz-required{{/if}}">
+<input name="{{field.name}}" data-field="{{field.name}}" type="number" style="width:{{field.width}}px;" {{#if field.required}}required{{/if}}
+    {{#if field.readonly}}readonly{{/if}}>
 {{/inline}}
 
 {{#*inline "form-range"}}
-<input name="{{field.name}}" type="range" style="width:{{field.width}}px;" min="{{field.min}}" max="{{field.max}}"
-    class="{{#if field.required}}zaz-required{{/if}}">
+<input name="{{field.name}}" data-field="{{field.name}}" type="range" style="width:{{field.width}}px;" min="{{field.min}}" max="{{field.max}}"
+    {{#if field.required}}required{{/if}} {{#if field.readonly}}readonly{{/if}}>
 {{/inline}}
 
 {{#*inline "form-checkbox"}}
@@ -96,7 +167,7 @@
     {{#each field.items as |item|}}
     <div class="zaz-form-checkbox-control">
         <label>
-            <input name="{{field.name}}" value="{{item.value}}" type="checkbox">
+            <input name="{{field.name}}" data-field="{{field.name}}" value="{{item.value}}" type="checkbox" {{#if field.readonly}}readonly{{/if}}>
             <span class="checkmark"></span>
         </label>
         <span class="control-title">{{item.title}}</span>
@@ -110,7 +181,7 @@
     {{#each field.items as |item|}}
     <div class="zaz-form-radio-control">
         <label>
-            <input name="{{field.name}}" value="{{item.value}}" type="radio">
+            <input name="{{field.name}}" data-field="{{field.name}}" value="{{item.value}}" type="radio" {{#if field.readonly}}readonly{{/if}}>
             <span class="checkmark"></span>
         </label>
         <span class="control-title">{{item.title}}</span>
@@ -120,7 +191,8 @@
 {{/inline}}
 
 {{#*inline "form-select"}}
-<select name="{{field.name}}" style="width:{{field.width}}px;" class="{{#if field.required}}zaz-required{{/if}}">
+<select name="{{field.name}}" data-field="{{field.name}}" style="width:{{field.width}}px;" {{#if field.required}}required{{/if}}
+    {{#if field.readonly}}readonly{{/if}}>
     {{#each field.items as |item|}}
     <option value="{{item.value}}">{{item.title}}</option>
     {{/each}}
@@ -128,35 +200,54 @@
 {{/inline}}
 
 {{#*inline "form-textarea"}}
-<textarea name="{{field.name}}" style="width:{{field.width}}px;"></textarea>
+<textarea name="{{field.name}}" data-field="{{field.name}}" style="width:{{field.width}}px;" {{#if field.readonly}}readonly{{/if}}></textarea>
 {{/inline}}
 
-{{#*inline "form-footer"}}
-<div class="zaz-form-footer">
-    <button type="button" class="button zaz-effect zaz-effect-bar-bottom" data-action="prev">
-        Prev
-    </button>
-    <button type="button" class="button zaz-effect zaz-effect-bar-bottom" data-action="next">
-        Next
-    </button>
-    <button type="submit" class="button zaz-effect zaz-effect-bar-bottom default" data-action="submit">
-        Submit
-    </button>
-</div>
+{{#*inline "form-color"}}
+<input name="{{field.name}}" data-field="{{field.name}}" type="color" style="width:{{field.width}}px;" {{#if field.required}}required{{/if}}
+    {{#if field.readonly}}readonly{{/if}}>
 {{/inline}}
+
+{{#*inline "form-date"}}
+<input name="{{field.name}}" type="date" style="width:{{field.width}}px;" {{#if field.required}}required{{/if}}
+    {{#if field.readonly}}readonly{{/if}}>
+{{/inline}}
+
+{{#*inline "form-file"}}
+<input name="{{field.name}}" data-field="{{field.name}}" type="file" style="width:{{field.width}}px;" {{#if field.required}}required{{/if}}
+    {{#if field.readonly}}readonly{{/if}}>
+{{/inline}}
+
+{{#*inline "form-month"}}
+<input name="{{field.name}}" data-field="{{field.name}}" type="month" style="width:{{field.width}}px;" {{#if field.required}}required{{/if}}
+    {{#if field.readonly}}readonly{{/if}}>
+{{/inline}}
+
+{{#*inline "form-tel"}}
+<input name="{{field.name}}" type="tel" style="width:{{field.width}}px;" {{#if field.required}}required{{/if}}
+    {{#if field.readonly}}readonly{{/if}}>
+{{/inline}}
+
+{{#*inline "form-time"}}
+<input name="{{field.name}}" data-field="{{field.name}}" type="time" style="width:{{field.width}}px;" {{#if field.required}}required{{/if}}
+    {{#if field.readonly}}readonly{{/if}}>
+{{/inline}}
+
+{{#*inline "form-url"}}
+<input name="{{field.name}}" data-field="{{field.name}}" type="url" style="width:{{field.width}}px;" {{#if field.required}}required{{/if}}
+    {{#if field.readonly}}readonly{{/if}}>
+{{/inline}}
+
+{{#*inline "form-week"}}
+<input name="{{field.name}}" data-field="{{field.name}}" type="week" style="width:{{field.width}}px;" {{#if field.required}}required{{/if}}
+    {{#if field.readonly}}readonly{{/if}}>
+{{/inline}}
+
 
 {{!-- 
-<input type="color">
-<input type="date">
 <input type="datetime-local">
-<input type="file">
 <input type="hidden">
 <input type="image">
-<input type="month">
 <input type="reset">
 <input type="search">
-<input type="tel">
-<input type="time">
-<input type="url">
-<input type="week">
 --}}

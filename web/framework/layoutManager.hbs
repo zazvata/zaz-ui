@@ -26,19 +26,29 @@
             <div class="zone-meta"></div>
         </div>
     {{/if}}
-    <div class="zone-splitter">
+    {{#if layouts.enableSplitter}}
+        <div class="zone-splitter">
         {{#if isVertical}}
             <div class="arrow" data-orientation="top" title="{{items.COLLAPSE-TOP}}"></div>
-            <div class="flip" title="{{items.FLIP-TOP-BOTTOM}}"></div>
-            <div class="orient" title="{{items.FLIP-ORIENTATION}}"></div>
+            {{#if layouts.enableFlip}}
+                <div class="flip" title="{{items.FLIP-TOP-BOTTOM}}"></div>
+            {{/if}}
+            {{#if layouts.enableOrientation}}
+                <div class="orient" title="{{items.FLIP-ORIENTATION}}"></div>
+            {{/if}}
             <div class="arrow" data-orientation="bottom" title="{{items.COLLAPSE-BOTTOM}}"></div>
         {{else}}
             <div class="arrow" data-orientation="left" title="{{items.COLLAPSE-LEFT}}"></div>
-            <div class="flip" title="{{items.FLIP-LEFT-RIGHT}}"></div>
-            <div class="orient" title="{{items.FLIP-ORIENTATION}}"></div>
-            <div class="arrow" data-orientation="right" title="{{items.COLLAPSE-RIGHT}}"></div>
+            {{#if layouts.enableFlip}}
+                <div class="flip" title="{{items.FLIP-LEFT-RIGHT}}"></div>
+            {{/if}}
+            {{#if layouts.enableOrientation}}
+                <div class="orient" title="{{items.FLIP-ORIENTATION}}"></div>
+            {{/if}}
+        <div class="arrow" data-orientation="right" title="{{items.COLLAPSE-RIGHT}}"></div>
         {{/if}}
-    </div>
+        </div>
+    {{/if}}
     {{#if isVertical}}
         <div class="zone bottom" data-meta="bottom" data-zone="{{parentZone}}-bottom">
             <div class="zone-close" title="{{items.CLOSE}}"><i class="material-icons md-light">close</i></div>

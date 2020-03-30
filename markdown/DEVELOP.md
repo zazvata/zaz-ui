@@ -94,7 +94,7 @@ The `_create` method gets invoked immediately any time a widget is instantiated.
 Let's create a Handlebars template for your Gadget. In your exampleGadget directory. Create a file called `exampleGadget.hbs` and paste the following code:
 
     ...
-    <div class="container zaz-effect zaz-effect-bar-top">
+    <div class="gadget-container zaz-effect zaz-effect-bar-top">
         <div class="gadget-controls">
             <div class="controls-bar">
                 <div class="message">

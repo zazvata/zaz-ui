@@ -441,7 +441,7 @@ define([
                     framework.layoutManager.setSplitter(theme.layout.splitter || false);
                     context.settings['PREFERENCE-user-layout']['splitter'] = (theme.layout.splitter) ? 1 : 0;
 
-                    framework.layoutManager.setSplitter(theme.layout.flip || false);
+                    framework.layoutManager.setFlip(theme.layout.flip || false);
                     context.settings['PREFERENCE-user-layout']['flip'] = (theme.layout.flip) ? 1 : 0;
 
                     framework.layoutManager.setOrientation(theme.layout.orient || false);
