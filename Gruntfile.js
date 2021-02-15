@@ -167,17 +167,6 @@ module.exports = function (grunt) {
             }
         },
 
-        jsdoc: {
-            dist: {
-                src: ['web/framework/*.js', 'web/gadgets/**/*.js', 'web/widgets/**/*.js', 'web/common/formatter.js', 'web/user/userManager.js'],
-                options: {
-                    destination: '<%= config.root %>/jsdocs',
-                    template: 'node_modules/ink-docstrap/template',
-                    configure: 'node_modules/ink-docstrap/template/jsdoc.conf.json'
-                }
-            },
-        },
-
         sass: {
             options: {
                 implementation: sass
@@ -192,7 +181,7 @@ module.exports = function (grunt) {
     grunt.registerTask('dev', ['configureProxies', 'connect:dev']);
     grunt.registerTask('package', ['handlebars', 'war']);
     grunt.registerTask('serve', ['sass', 'handlebars', 'concurrent:target']);
-    grunt.registerTask('default', ['serve']);
+    grunt.registerTask('default', ['localhost']);
     grunt.registerTask('heroku', function() {
         grunt.option('proxy', 'heroku');
         grunt.task.run('serve');
