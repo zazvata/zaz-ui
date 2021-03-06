@@ -15,10 +15,6 @@ module.exports = function (grunt) {
     var app = {
         endPoints: ['/api'],
         root: 'web',
-        war: {
-            name: 'zaz-ui',
-            folder: 'war'
-        },
         scripts: [
             'web/**/*.js',
             '!web/vendor/**/*.js',
@@ -134,22 +130,6 @@ module.exports = function (grunt) {
             }
         },
 
-        war: {
-            target: {
-                options: {
-                    war_dist_folder: '<%= config.war.folder %>',
-                    war_name: '<%= config.war.name %>',
-                    webxml_display_name: '<%= config.war.name %>'
-                },
-                files: [{
-                    expand: true,
-                    cwd: '<%= config.war.folder %>',
-                    src: ['**'],
-                    dest: ''
-                }]
-            }
-        },
-
         watch: {
             templates: {
                 files: '<%= config.root %>/**/*.hbs',
@@ -179,7 +159,6 @@ module.exports = function (grunt) {
     });
 
     grunt.registerTask('dev', ['configureProxies', 'connect:dev']);
-    grunt.registerTask('package', ['handlebars', 'war']);
     grunt.registerTask('serve', ['sass', 'handlebars', 'concurrent:target']);
     grunt.registerTask('default', ['localhost']);
     grunt.registerTask('heroku', function() {
