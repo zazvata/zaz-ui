@@ -1,0 +1,43 @@
+.gadget.cars .gadget-controls {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  border-bottom: none; }
+  .gadget.cars .gadget-controls .controls-bar .knobs.rows .knob {
+    padding: 10px 10px; }
+
+.gadget.cars .grid {
+  border-top: 1px solid #aaa; }
+  .gadget.cars .grid[data-mode="tile"].template .zaz-grid-table tbody td .cell {
+    padding: 0px;
+    display: flex;
+    flex-direction: row; }
+    .gadget.cars .grid[data-mode="tile"].template .zaz-grid-table tbody td .cell .cell-left {
+      width: 20px; }
+      .gadget.cars .grid[data-mode="tile"].template .zaz-grid-table tbody td .cell .cell-left .car-id {
+        transform: translateY(-16px) rotate(90deg);
+        transform-origin: bottom left;
+        white-space: nowrap; }
+    .gadget.cars .grid[data-mode="tile"].template .zaz-grid-table tbody td .cell .cell-right {
+      position: relative;
+      padding: 10px;
+      flex: 1; }
+      .gadget.cars .grid[data-mode="tile"].template .zaz-grid-table tbody td .cell .cell-right .car {
+        display: flex;
+        flex-direction: row;
+        align-items: center; }
+        .gadget.cars .grid[data-mode="tile"].template .zaz-grid-table tbody td .cell .cell-right .car .car-make {
+          font-size: 150%;
+          margin-right: 10px; }
+        .gadget.cars .grid[data-mode="tile"].template .zaz-grid-table tbody td .cell .cell-right .car .car-model {
+          padding: 2px 5px;
+          background-color: #fff;
+          border: 1px solid #ccc;
+          border-radius: 3px; }
+      .gadget.cars .grid[data-mode="tile"].template .zaz-grid-table tbody td .cell .cell-right .car-cost {
+        position: absolute;
+        bottom: 10px;
+        right: 10px;
+        color: darkgreen; }
+        .gadget.cars .grid[data-mode="tile"].template .zaz-grid-table tbody td .cell .cell-right .car-cost.expensive {
+          color: red; }

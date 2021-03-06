@@ -1,0 +1,20 @@
+.gadget.lab .container {
+  overflow: hidden; }
+
+.gadget.lab .gadget-controls {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between; }
+
+.gadget.lab .gadget-content {
+  flex: 1;
+  border-top: 1px solid #aaa;
+  padding: 0;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center; }
+  .gadget.lab .gadget-content .lab-widget {
+    width: 75%;
+    height: 75%;
+    border: 1px solid #ccc; }

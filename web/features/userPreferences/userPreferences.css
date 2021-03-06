@@ -1,0 +1,79 @@
+.zaz-overlay.userpreferences-overlay {
+  font-family: Arial;
+  font-size: 10pt;
+  font-style: normal;
+  font-weight: normal;
+  color: #000; }
+  .zaz-overlay.userpreferences-overlay .zaz-overlay-content {
+    height: 500px;
+    display: flex;
+    padding: 0px; }
+    .zaz-overlay.userpreferences-overlay .zaz-overlay-content .left {
+      width: 200px;
+      border-right: 1px solid #ccc;
+      position: relative; }
+      .zaz-overlay.userpreferences-overlay .zaz-overlay-content .left .items {
+        padding: 10px;
+        display: flex;
+        flex-direction: column; }
+        .zaz-overlay.userpreferences-overlay .zaz-overlay-content .left .items .item {
+          cursor: pointer;
+          padding: 10px;
+          outline: none;
+          transition: all 0.2s cubic-bezier(0.4, 0, 1, 1);
+          background-color: #eee;
+          border-bottom: 1px solid #ccc;
+          transition: all 0.4s ease-in-out; }
+          .zaz-overlay.userpreferences-overlay .zaz-overlay-content .left .items .item:first-child {
+            border-top: 1px solid #ccc; }
+    .zaz-overlay.userpreferences-overlay .zaz-overlay-content .right {
+      width: 500px;
+      position: relative; }
+      .zaz-overlay.userpreferences-overlay .zaz-overlay-content .right .pane {
+        bottom: 0;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        overflow: hidden;
+        transition: all 0.2s cubic-bezier(0.4, 0, 1, 1); }
+        .zaz-overlay.userpreferences-overlay .zaz-overlay-content .right .pane > .header {
+          padding: 10px;
+          background-color: #eee;
+          border-bottom: 1px solid #ccc; }
+        .zaz-overlay.userpreferences-overlay .zaz-overlay-content .right .pane table {
+          border: none;
+          width: 95%;
+          margin: 10px; }
+          .zaz-overlay.userpreferences-overlay .zaz-overlay-content .right .pane table .title {
+            width: 125px;
+            padding: 10px 0 10px 0;
+            vertical-align: top; }
+          .zaz-overlay.userpreferences-overlay .zaz-overlay-content .right .pane table .value {
+            width: 100%; }
+        .zaz-overlay.userpreferences-overlay .zaz-overlay-content .right .pane .fontPreview div {
+          border: 1px solid #ddd;
+          height: 100px;
+          margin-top: 10px;
+          overflow: hidden;
+          padding: 5px;
+          width: 450px; }
+        .zaz-overlay.userpreferences-overlay .zaz-overlay-content .right .pane .flags .flag {
+          display: inline-block;
+          width: 88px;
+          height: 102px;
+          text-align: center;
+          cursor: pointer; }
+          .zaz-overlay.userpreferences-overlay .zaz-overlay-content .right .pane .flags .flag .icon {
+            height: 64px;
+            width: 64px;
+            margin: auto; }
+          .zaz-overlay.userpreferences-overlay .zaz-overlay-content .right .pane .flags .flag label {
+            padding: 3px 10px;
+            background-color: #f5f5f5;
+            border-radius: 5px;
+            box-shadow: 0px 0px 1px #666;
+            font-size: 90%; }
+  .zaz-overlay.userpreferences-overlay .zaz-overlay-footer .instant {
+    color: #000000;
+    margin-right: 10px; }

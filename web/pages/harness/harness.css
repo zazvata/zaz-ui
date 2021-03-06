@@ -1,0 +1,16 @@
+.__harness {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 50px;
+  bottom: 50px;
+  left: 50px;
+  right: 50px; }
+  .__harness .content {
+    flex: 1;
+    position: relative; }
+    .__harness .content .gadget {
+      border: 1px solid #999;
+      margin: 0; }
+      .__harness .content .gadget .message {
+        padding: 5px; }

@@ -1,0 +1,25 @@
+.gadget.applicationInformation .container {
+  overflow: hidden; }
+
+.gadget.applicationInformation .gadget-controls {
+  padding: 0; }
+  .gadget.applicationInformation .gadget-controls .message {
+    color: RGB(var(--theme-color));
+    line-height: 22px; }
+  .gadget.applicationInformation .gadget-controls .controls-bar {
+    justify-content: space-between;
+    flex-wrap: wrap; }
+    .gadget.applicationInformation .gadget-controls .controls-bar:first-of-type {
+      display: flex;
+      border-bottom: 1px solid #ccc;
+      padding: 5px; }
+
+.gadget.applicationInformation .gadget-content {
+  flex: 1;
+  border-top: 1px solid #aaa;
+  padding: 10px 0 10px 10px;
+  overflow: auto; }
+  .gadget.applicationInformation .gadget-content .address div {
+    padding: 5px;
+    background-color: #ccc;
+    display: inline-block; }

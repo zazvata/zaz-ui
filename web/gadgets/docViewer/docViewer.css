@@ -1,0 +1,18 @@
+.gadget.docViewer {
+  pointer-events: none; }
+  .gadget.docViewer .container {
+    overflow: hidden; }
+  .gadget.docViewer .gadget-controls {
+    padding: 0; }
+    .gadget.docViewer .gadget-controls .controls-bar {
+      justify-content: space-between;
+      flex-wrap: wrap; }
+      .gadget.docViewer .gadget-controls .controls-bar:first-of-type {
+        display: flex;
+        border-bottom: 1px solid #ccc;
+        padding: 5px; }
+  .gadget.docViewer .gadget-content {
+    flex: 1;
+    border-top: 1px solid #aaa;
+    padding: 0px;
+    overflow: hidden; }

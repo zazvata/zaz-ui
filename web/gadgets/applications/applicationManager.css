@@ -1,0 +1,13 @@
+.zaz-overlay.new-application-overlay {
+  width: 300px; }
+  .zaz-overlay.new-application-overlay .zaz-overlay-content .new-application-row {
+    padding: 10px; }
+  .zaz-overlay.new-application-overlay .zaz-overlay-content .seperator {
+    border-top: 1px solid #ccc; }
+  .zaz-overlay.new-application-overlay .zaz-overlay-content label {
+    padding-bottom: 5px;
+    display: block; }
+  .zaz-overlay.new-application-overlay .zaz-overlay-content select {
+    display: block;
+    width: 100%;
+    padding: 3px; }

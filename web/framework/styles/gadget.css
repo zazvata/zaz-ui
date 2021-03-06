@@ -1,0 +1,314 @@
+.gadget {
+  background-color: white;
+  overflow: hidden;
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  margin: 0px 15px 15px 15px; }
+  .gadget .gadget-container {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    overflow: hidden; }
+  .gadget .gadget-controls {
+    align-items: center; }
+    .gadget .gadget-controls .controls-bar {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      padding: 10px;
+      justify-content: space-between; }
+      .gadget .gadget-controls .controls-bar > .knobs {
+        display: flex; }
+        .gadget .gadget-controls .controls-bar > .knobs .knob {
+          border-right: 1px solid #ccc;
+          cursor: pointer;
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          color: #000;
+          background-color: #ddd;
+          padding: 5px 10px;
+          transition: all 0.2s ease-in-out; }
+          .gadget .gadget-controls .controls-bar > .knobs .knob:hover, .gadget .gadget-controls .controls-bar > .knobs .knob:focus {
+            background-color: var(--theme-color-o4); }
+          .gadget .gadget-controls .controls-bar > .knobs .knob.active {
+            color: #fff;
+            background-color: var(--theme-color-o8); }
+            .gadget .gadget-controls .controls-bar > .knobs .knob.active i {
+              color: #fff; }
+          .gadget .gadget-controls .controls-bar > .knobs .knob label {
+            margin-left: 4px;
+            vertical-align: bottom;
+            cursor: pointer; }
+          .gadget .gadget-controls .controls-bar > .knobs .knob:first-of-type {
+            border-top-left-radius: 3px;
+            border-bottom-left-radius: 3px; }
+          .gadget .gadget-controls .controls-bar > .knobs .knob:last-of-type {
+            border-top-right-radius: 3px;
+            border-bottom-right-radius: 3px;
+            border-right-width: 0px; }
+          .gadget .gadget-controls .controls-bar > .knobs .knob i {
+            color: RGB(var(--theme-color)); }
+      .gadget .gadget-controls .controls-bar > .filters {
+        padding: 0; }
+        .gadget .gadget-controls .controls-bar > .filters .label {
+          color: #888;
+          font-weight: bold;
+          display: inline-block;
+          padding: 4px 10px;
+          text-shadow: 0 1px 0 #fff; }
+        .gadget .gadget-controls .controls-bar > .filters .filter {
+          display: inline-block;
+          padding: 5px 10px;
+          cursor: pointer;
+          outline: none;
+          border-radius: 5px;
+          margin-bottom: 5px;
+          margin-right: 5px;
+          user-select: none;
+          background-color: #ddd; }
+          .gadget .gadget-controls .controls-bar > .filters .filter.active {
+            background-color: RGB(var(--theme-color));
+            color: #fff; }
+          .gadget .gadget-controls .controls-bar > .filters .filter:hover, .gadget .gadget-controls .controls-bar > .filters .filter:focus {
+            background-color: var(--theme-color-o4); }
+          .gadget .gadget-controls .controls-bar > .filters .filter.active:hover, .gadget .gadget-controls .controls-bar > .filters .filter.active:focus {
+            background-color: RGB(var(--theme-color));
+            color: #fff; }
+          .gadget .gadget-controls .controls-bar > .filters .filter .count {
+            display: inline-block;
+            text-align: center;
+            padding: 1px 4px;
+            border-radius: 5px;
+            background-color: #fff;
+            color: #000;
+            margin-left: 5px; }
+      .gadget .gadget-controls .controls-bar .message {
+        color: RGB(var(--theme-color));
+        line-height: 22px; }
+  .gadget .gadget-content {
+    flex: 1;
+    position: relative;
+    display: flex; }
+  .gadget .gadget-loading {
+    display: none; }
+    .gadget .gadget-loading.gadget-mask {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 1;
+      opacity: 0.5;
+      background-color: #cccccc;
+      align-items: center;
+      user-select: none; }
+    .gadget .gadget-loading.gadget-message {
+      align-items: center;
+      z-index: 2;
+      padding: 10px;
+      position: absolute;
+      background-color: #ffffff;
+      border-radius: 3px;
+      box-shadow: 0px 0px 3px #000;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%); }
+      .gadget .gadget-loading.gadget-message .gadget-message-icon {
+        height: 24px;
+        width: 24px;
+        background: url("../images/loading-wheel.gif") no-repeat;
+        margin-right: 10px; }
+      .gadget .gadget-loading.gadget-message .gadget-message-text {
+        vertical-align: middle; }
+
+.gadget-opener-overlay .zaz-overlay-content {
+  background-color: #f8f8f8;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap; }
+  .gadget-opener-overlay .zaz-overlay-content .gadget-opener-section {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 10px; }
+    .gadget-opener-overlay .zaz-overlay-content .gadget-opener-section .gadget-opener-title[data-mode="open"] .open {
+      display: block; }
+    .gadget-opener-overlay .zaz-overlay-content .gadget-opener-section .gadget-opener-title[data-mode="open"] .move {
+      display: none; }
+    .gadget-opener-overlay .zaz-overlay-content .gadget-opener-section .gadget-opener-title[data-mode="move"] .open {
+      display: none; }
+    .gadget-opener-overlay .zaz-overlay-content .gadget-opener-section .gadget-opener-title[data-mode="move"] .move {
+      display: block; }
+    .gadget-opener-overlay .zaz-overlay-content .gadget-opener-section .gadget-new {
+      display: flex;
+      flex-direction: row; }
+      .gadget-opener-overlay .zaz-overlay-content .gadget-opener-section .gadget-new .gadget-new-window,
+      .gadget-opener-overlay .zaz-overlay-content .gadget-opener-section .gadget-new .gadget-new-tab {
+        cursor: pointer;
+        margin-left: 5px;
+        padding: 10px;
+        border-radius: 5px;
+        background-color: var(--theme-color-o2); }
+  .gadget-opener-overlay .zaz-overlay-content .area-current-windows {
+    max-width: 1000px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    white-space: nowrap; }
+    .gadget-opener-overlay .zaz-overlay-content .area-current-windows .area {
+      overflow: hidden;
+      display: inline-block;
+      margin-left: 10px; }
+      .gadget-opener-overlay .zaz-overlay-content .area-current-windows .area .area-container {
+        position: relative;
+        width: 25vw;
+        height: 25vh;
+        margin-bottom: 5px;
+        display: flex;
+        flex: 1; }
+        .gadget-opener-overlay .zaz-overlay-content .area-current-windows .area .area-container .zone.noborder {
+          border: none; }
+        .gadget-opener-overlay .zaz-overlay-content .area-current-windows .area .area-container .zone.left {
+          margin: 5px 5px 0px 0px; }
+        .gadget-opener-overlay .zaz-overlay-content .area-current-windows .area .area-container .zone.right {
+          margin: 5px 5px 0px 0px; }
+        .gadget-opener-overlay .zaz-overlay-content .area-current-windows .area .area-container .zone.top {
+          margin: 5px 5px 0px 0px; }
+        .gadget-opener-overlay .zaz-overlay-content .area-current-windows .area .area-container .zone.bottom {
+          margin: 5px 5px 0px 0px; }
+        .gadget-opener-overlay .zaz-overlay-content .area-current-windows .area .area-container .zone.new .text {
+          margin: auto; }
+        .gadget-opener-overlay .zaz-overlay-content .area-current-windows .area .area-container .zone .text {
+          padding: 2px;
+          font-size: 80%;
+          white-space: normal; }
+        .gadget-opener-overlay .zaz-overlay-content .area-current-windows .area .area-container .zone[data-orientation] {
+          border: none; }
+          .gadget-opener-overlay .zaz-overlay-content .area-current-windows .area .area-container .zone[data-orientation].left {
+            margin: 0px; }
+          .gadget-opener-overlay .zaz-overlay-content .area-current-windows .area .area-container .zone[data-orientation].right {
+            margin: 0px; }
+          .gadget-opener-overlay .zaz-overlay-content .area-current-windows .area .area-container .zone[data-orientation].top {
+            margin: 0px; }
+          .gadget-opener-overlay .zaz-overlay-content .area-current-windows .area .area-container .zone[data-orientation].bottom {
+            margin: 0px; }
+        .gadget-opener-overlay .zaz-overlay-content .area-current-windows .area .area-container .zone[data-zone="main"] {
+          border: 1px dashed #BBBBBB;
+          padding: 0px 0px 5px 5px; }
+        .gadget-opener-overlay .zaz-overlay-content .area-current-windows .area .area-container .item {
+          background-color: var(--theme-color-o2); }
+          .gadget-opener-overlay .zaz-overlay-content .area-current-windows .area .area-container .item:hover, .gadget-opener-overlay .zaz-overlay-content .area-current-windows .area .area-container .item:focus {
+            background-color: RGB(var(--theme-color));
+            color: #fff; }
+      .gadget-opener-overlay .zaz-overlay-content .area-current-windows .area:first-child {
+        margin-left: 0px; }
+
+.gadget-opener-overlay .__layout {
+  background-color: #fff; }
+  .gadget-opener-overlay .__layout .item {
+    border: 1px dashed #BBBBBB !important;
+    padding: 0;
+    color: #000;
+    cursor: pointer; }
+
+body[data-mobile="yes"] .gadgets-overlay {
+  width: 80%; }
+  body[data-mobile="yes"] .gadgets-overlay .zaz-overlay-content {
+    max-height: 300px; }
+    body[data-mobile="yes"] .gadgets-overlay .zaz-overlay-content .gadgets .item {
+      width: 100%; }
+  body[data-mobile="yes"] .gadgets-overlay .zaz-overlay-header .zaz-overlay-header-close {
+    display: none; }
+
+.gadgetlistmenu .items .item .item-title {
+  margin-left: 10px; }
+
+.gadgetlistmenu .items .item:hover i, .gadgetlistmenu .items .item:focus i {
+  color: #fff; }
+
+.gadgets-overlay {
+  width: 840px; }
+  .gadgets-overlay .zaz-overlay-content {
+    padding: 20px 0 0 20px;
+    background-color: var(--theme-color-o2);
+    max-height: 400px; }
+    .gadgets-overlay .zaz-overlay-content .gadgets {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: flex-start; }
+      .gadgets-overlay .zaz-overlay-content .gadgets .item {
+        cursor: pointer;
+        margin: 0 20px 20px 0;
+        background-color: #fff;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        width: 230px;
+        padding: 10px;
+        display: flex;
+        flex-direction: row;
+        transition: all 0.2s ease-in-out; }
+        .gadgets-overlay .zaz-overlay-content .gadgets .item i {
+          font-size: 36pt; }
+        .gadgets-overlay .zaz-overlay-content .gadgets .item .item-meta {
+          display: flex;
+          flex-direction: column;
+          border-left: 1px solid #ccc;
+          margin-left: 10px; }
+          .gadgets-overlay .zaz-overlay-content .gadgets .item .item-meta .item-title {
+            padding: 5px;
+            border-bottom: 1px solid #ccc; }
+          .gadgets-overlay .zaz-overlay-content .gadgets .item .item-meta .item-desc {
+            font-size: 90%;
+            padding: 5px; }
+
+body[data-mode="city"] .gadget {
+  margin: 0px 10px 10px 10px; }
+  body[data-mode="city"] .gadget .gadget-controls .controls-bar > .knobs .knob {
+    padding: 5px 10px; }
+    body[data-mode="city"] .gadget .gadget-controls .controls-bar > .knobs .knob i {
+      font-size: 22px; }
+
+body[data-mode="town"] .gadget {
+  margin: 0px 15px 15px 15px; }
+  body[data-mode="town"] .gadget .gadget-controls .controls-bar > .knobs .knob {
+    padding: 5px 10px; }
+    body[data-mode="town"] .gadget .gadget-controls .controls-bar > .knobs .knob i {
+      font-size: 26px; }
+
+body[data-mode="country"] .gadget {
+  margin: 0px 20px 20px 20px; }
+  body[data-mode="country"] .gadget .gadget-controls .controls-bar > .knobs .knob {
+    padding: 5px 15px; }
+    body[data-mode="country"] .gadget .gadget-controls .controls-bar > .knobs .knob i {
+      font-size: 32px; }
+
+body.no-tab[data-mode="city"] .gadget {
+  margin: 10px; }
+
+body.no-tab[data-mode="town"] .gadget {
+  margin: 15px; }
+
+body.no-tab[data-mode="country"] .gadget {
+  margin: 20px; }
+
+body[data-mobile="yes"] .gadget {
+  border: none;
+  margin: 10px; }
+
+body.debug .gadget::after {
+  font-size: 75%;
+  content: "{ max-width: " attr(max-width) ", min-width: " attr(min-width) "}";
+  position: absolute;
+  bottom: 10px;
+  right: 10px; }

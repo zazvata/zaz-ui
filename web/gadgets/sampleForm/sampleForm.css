@@ -1,0 +1,11 @@
+.sampleForm .gadget-controls {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  border-bottom: none; }
+
+.sampleForm .gadget-content {
+  flex: 1;
+  border-top: 1px solid #aaa;
+  overflow: auto;
+  display: flex; }

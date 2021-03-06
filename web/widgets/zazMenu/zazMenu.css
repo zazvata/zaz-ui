@@ -1,0 +1,58 @@
+.zaz-menu {
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  min-width: 150px;
+  background-color: #fff;
+  box-shadow: 2px 2px 5px #555;
+  transition: all 0.2s ease-out;
+  transform: perspective(100px) translateZ(-100px); }
+  .zaz-menu.zaz-menu-active {
+    opacity: 1;
+    transform: translateZ(0); }
+  .zaz-menu > .items {
+    max-height: 500px; }
+    .zaz-menu > .items .item {
+      padding: 10px;
+      cursor: pointer;
+      white-space: nowrap;
+      overflow: hidden;
+      background-color: var(--theme-color-o2);
+      text-align: left;
+      outline: none;
+      position: relative;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      transition: all 0.2s ease-in-out; }
+      .zaz-menu > .items .item i {
+        transition: all 0.4s ease-in-out; }
+      .zaz-menu > .items .item:last-child {
+        border-bottom: none; }
+      .zaz-menu > .items .item:hover, .zaz-menu > .items .item:focus {
+        background-color: var(--theme-color-o8);
+        color: #fff;
+        outline-width: 0; }
+      .zaz-menu > .items .item .disabled {
+        cursor: default;
+        color: #ccc; }
+        .zaz-menu > .items .item .disabled:hover, .zaz-menu > .items .item .disabled:focus {
+          color: #ccc;
+          background-color: inherit; }
+        .zaz-menu > .items .item .disabled.selected {
+          color: #ccc; }
+      .zaz-menu > .items .item .selected {
+        background-color: var(--theme-color-08);
+        color: #fff;
+        outline-width: 0; }
+    .zaz-menu > .items .divider {
+      border-top: 1px solid #ccc; }
+  .zaz-menu > .section {
+    padding: 5px 20px 5px 10px;
+    color: #999;
+    white-space: nowrap;
+    overflow: hidden;
+    border-bottom: 1px solid #fff;
+    text-align: left;
+    outline: none;
+    background-color: #efefef; }

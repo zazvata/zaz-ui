@@ -1,0 +1,59 @@
+.about-overlay .zaz-overlay-content {
+  max-width: 750px;
+  padding: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between; }
+  .about-overlay .zaz-overlay-content .left {
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column; }
+    .about-overlay .zaz-overlay-content .left .logo {
+      height: 200px;
+      width: 200px;
+      padding-right: 10px;
+      animation: swivel-logo 5s infinite alternate ease-in-out; }
+      .about-overlay .zaz-overlay-content .left .logo .icon {
+        height: 100%;
+        width: 100%; }
+  .about-overlay .zaz-overlay-content .right div span {
+    font-size: 14pt; }
+  .about-overlay .zaz-overlay-content .right .about-content {
+    border-top: 1px solid #ccc;
+    padding: 20px 0;
+    font-size: 10pt; }
+    .about-overlay .zaz-overlay-content .right .about-content .section {
+      margin-top: 20px;
+      padding: 5px;
+      border-radius: 5px;
+      position: relative; }
+      .about-overlay .zaz-overlay-content .right .about-content .section .about-content-title {
+        display: inline-block;
+        padding: 5px 20px;
+        color: white;
+        border-radius: 5px;
+        position: absolute; }
+      .about-overlay .zaz-overlay-content .right .about-content .section.new {
+        background-color: rgba(0, 100, 0, 0.2); }
+        .about-overlay .zaz-overlay-content .right .about-content .section.new .about-content-title {
+          background-color: darkgreen;
+          top: -12px;
+          left: 10px; }
+      .about-overlay .zaz-overlay-content .right .about-content .section.coming {
+        background-color: rgba(221, 138, 29, 0.2); }
+        .about-overlay .zaz-overlay-content .right .about-content .section.coming .about-content-title {
+          background-color: #dd8a1d;
+          top: -12px;
+          left: 35%; }
+      .about-overlay .zaz-overlay-content .right .about-content .section.planned {
+        background-color: rgba(48, 48, 195, 0.2); }
+        .about-overlay .zaz-overlay-content .right .about-content .section.planned .about-content-title {
+          background-color: #3030c3;
+          top: -12px;
+          right: 10px; }
+
+@keyframes swivel-logo {
+  0% {
+    transform: perspective(500px) rotateY(-30deg); }
+  100% {
+    transform: perspective(500px) rotateY(30deg); } }

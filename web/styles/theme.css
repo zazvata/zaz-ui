@@ -1,0 +1,29 @@
+body[data-theme='steadfast'] .empty {
+  border: none; }
+
+body[data-theme='steadfast'] .__layout .zone[data-orientation="h"] > .zone-splitter {
+  height: 99%; }
+
+body[data-theme='steadfast'] .__layout .zone[data-orientation="v"] > .zone-splitter {
+  width: 99%; }
+
+body[data-theme='spacedark'] .empty {
+  border: none; }
+
+body[data-theme='bloodymary'] .empty {
+  border: none; }
+
+body[data-theme='bloodymary'] .__layout .zone[data-orientation="h"] > .zone-splitter {
+  height: 25%; }
+
+body[data-theme='bloodymary'] .__layout .zone[data-orientation="v"] > .zone-splitter {
+  width: 25%; }
+
+body[data-theme='serenemeadow'] .empty {
+  border: none; }
+
+body[data-theme='serenemeadow'] .__layout .zone[data-orientation="h"] > .zone-splitter {
+  height: 75%; }
+
+body[data-theme='serenemeadow'] .__layout .zone[data-orientation="v"] > .zone-splitter {
+  width: 75%; }

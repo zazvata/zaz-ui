@@ -1,0 +1,63 @@
+.__toolbar {
+  background-color: var(--theme-color-o8);
+  display: flex; }
+  .__toolbar .standard,
+  .__toolbar .mobile {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    align-items: center; }
+  .__toolbar .mobile {
+    display: none; }
+  .__toolbar .zaz-user {
+    color: #fff; }
+
+body.no-toolbar .__arrangement .__toolbar {
+  display: none !important; }
+
+body .__arrangement {
+  display: flex;
+  flex-direction: column;
+  flex: 1; }
+
+body[data-toolbar="top"] .__arrangement {
+  flex-direction: column; }
+  body[data-toolbar="top"] .__arrangement .__toolbar {
+    flex-direction: column; }
+    body[data-toolbar="top"] .__arrangement .__toolbar .standard .knobs {
+      flex-direction: row; }
+
+body[data-toolbar="bottom"] .__arrangement {
+  flex-direction: column-reverse; }
+  body[data-toolbar="bottom"] .__arrangement .__toolbar {
+    flex-direction: column; }
+    body[data-toolbar="bottom"] .__arrangement .__toolbar .standard .knobs {
+      flex-direction: row; }
+
+body[data-toolbar="left"] .__arrangement {
+  flex-direction: row; }
+  body[data-toolbar="left"] .__arrangement .__toolbar {
+    display: flex;
+    flex-direction: row; }
+    body[data-toolbar="left"] .__arrangement .__toolbar .standard {
+      flex-direction: column; }
+      body[data-toolbar="left"] .__arrangement .__toolbar .standard .knobs {
+        flex-direction: column; }
+
+body[data-toolbar="right"] .__arrangement {
+  flex-direction: row-reverse; }
+  body[data-toolbar="right"] .__arrangement .__toolbar {
+    display: flex;
+    flex-direction: row; }
+    body[data-toolbar="right"] .__arrangement .__toolbar .standard {
+      flex-direction: column; }
+      body[data-toolbar="right"] .__arrangement .__toolbar .standard .knobs {
+        flex-direction: column; }
+
+body[data-mobile="yes"] .__arrangement {
+  flex-direction: column; }
+  body[data-mobile="yes"] .__arrangement .__toolbar .standard {
+    display: none; }
+  body[data-mobile="yes"] .__arrangement .__toolbar .mobile {
+    width: 100%;
+    display: flex; }
