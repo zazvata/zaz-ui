@@ -24,7 +24,11 @@ define([
         }).always(function () {
             if (!window.CONFIG.mock) {
                 socket = io(strUrl, {
-                    query: 'userId=' + window.USERID
+                    query: 'userId=' + window.USERID,
+                    withCredentials: true,
+                    extraHeaders: {
+                      "zaz-socket-header": "zaz"
+                    }
                 });
                 socket.on('server-message', ioManager.handleSocketMessage);
             }
