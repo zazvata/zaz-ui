@@ -9,9 +9,6 @@
   "main": "index.html",
   "author": "Zazvata Inc.",
   "license": "",
-  "scripts": {
-    "build": "grunt handlebars"
-  },
   "devDependencies": {
     "grunt": "^1.3.0",
     "grunt-concurrent": "^3.0.0",
