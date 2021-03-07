@@ -18,9 +18,9 @@ define([
         }
 
         ioManager.getConfig().done(function () {
-            strUrl = (context.data.heroku) ? 'http://zaz-rest.zazvata.com' : 'http://localhost:6001';
+            strUrl = (context.data.heroku) ? 'https://zaz-rest.zazvata.com' : 'http://localhost:6001';
         }).fail(function () {
-            strUrl = 'http://zaz-rest.zazvata.com';
+            strUrl = 'https://zaz-rest.zazvata.com';
         }).always(function () {
             if (!window.CONFIG.mock) {
                 socket = io(strUrl, {
